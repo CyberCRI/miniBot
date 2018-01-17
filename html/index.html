@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>miniBot</title>
+  <meta name="description" content="miniBot interface">
+  <meta name="author" content="Emma Barme">
+
+  <link rel="stylesheet" href="./style/styles.css" type="text/css">
+
+  <script src="./javascript/talkToMiniBot.js"></script>
+
+</head>
+
+<body>
+  <div id='botDiv'>
+    <p>Hello, my name is miniBot.</p>
+    <p>I cannot do much yet, but I will still try to help you ;)</p>
+  </div>
+  <div id='userDiv'>
+    <form name="userInput" onsubmit="return talkToMiniBot()">
+      Talk to miniBot:</br>
+      <input type="text" name="userInput"><br>
+    </form>
+  </div>
+</body>
+</html>
