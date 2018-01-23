@@ -10,9 +10,11 @@ import tensorflow as tf
 import random
 
 import json
+import os
 
 # import pickle for saving
 import pickle
+
 
 def createModel():
     ##### LOAD DATA #####
@@ -21,7 +23,9 @@ def createModel():
     stemmer = LancasterStemmer()
 
     # import our chat-bot intents file
-    with open('intents.json') as json_data:
+    appPath = os.path.dirname(os.path.abspath(__file__))
+    intentsPath = os.path.join(appPath, "intents.json")
+    with open(intentsPath) as json_data:
         intents = json.load(json_data)
 
 
@@ -97,10 +101,12 @@ def createModel():
     net = tflearn.regression(net)
 
     # Define model and setup tensorboard
-    model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
+    logsPath = os.path.join(appPath, 'tflearn_logs')
+    model = tflearn.DNN(net, tensorboard_dir=logsPath)
     # Start training (apply gradient descent algorithm)
     model.fit(train_x, train_y, n_epoch=1000, batch_size=8, show_metric=True)
-    model.save('model.tflearn')
+    modelPath  = os.path.join(appPath, 'model.tflearn')
+    model.save(modelPath)
 
 
     ##### DEFINE PROCESSING FUNCTIONS FOR NEW INPUT #####
@@ -131,4 +137,5 @@ def createModel():
     ##### SAVE MODEL #####
 
     # save all of our data structures
-    pickle.dump( {'words':words, 'classes':classes, 'train_x':train_x, 'train_y':train_y}, open( "training_data", "wb" ) )
+    trainingDataPath = os.path.join(appPath, "training_data")
+    pickle.dump( {'words':words, 'classes':classes, 'train_x':train_x, 'train_y':train_y}, open( trainingDataPath, "wb" ) )

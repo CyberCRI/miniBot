@@ -12,41 +12,44 @@ import random
 
 import pickle
 import json
+import os
+
+##### LOAD DATA #####
+
+# things we need for NLP
+stemmer = LancasterStemmer()
+
+# restore all of our data structures
+appPath = os.path.dirname(os.path.abspath(__file__))
+trainingDataPath = os.path.join(appPath, "training_data")
+data = pickle.load( open( trainingDataPath, "rb" ) )
+words = data['words']
+classes = data['classes']
+train_x = data['train_x']
+train_y = data['train_y']
+
+# import our chat-bot intents file
+intentsPath = os.path.join(appPath, "intents.json")
+with open(intentsPath) as json_data:
+    intents = json.load(json_data)
 
 
-# Set up the model
-def loadModel():
-    ##### LOAD DATA #####
+##### SET UP MODEL #####
 
-    # things we need for NLP
-    stemmer = LancasterStemmer()
+# Build neural network
+net = tflearn.input_data(shape=[None, len(train_x[0])])
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, len(train_y[0]), activation='softmax')
+net = tflearn.regression(net)
 
-    # restore all of our data structures
-    data = pickle.load( open( "training_data", "rb" ) )
-    words = data['words']
-    classes = data['classes']
-    train_x = data['train_x']
-    train_y = data['train_y']
+# Define model and setup tensorboard
+logsPath = os.path.join(appPath, 'tflearn_logs')
+model = tflearn.DNN(net, tensorboard_dir=logsPath)
 
-    # import our chat-bot intents file
-    with open('intents.json') as json_data:
-        intents = json.load(json_data)
-
-
-    ##### SET UP MODEL #####
-
-    # Build neural network
-    net = tflearn.input_data(shape=[None, len(train_x[0])])
-    net = tflearn.fully_connected(net, 8)
-    net = tflearn.fully_connected(net, 8)
-    net = tflearn.fully_connected(net, len(train_y[0]), activation='softmax')
-    net = tflearn.regression(net)
-
-    # Define model and setup tensorboard
-    model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
-
-    # load our saved model
-    model.load('./model.tflearn')
+# load our saved model
+modelPath  = os.path.join(appPath, 'model.tflearn')
+model.load(modelPath)
 
 
 ##### PROCESSING FUNCTIONS #####
@@ -109,6 +112,6 @@ def response(sentence, userID='123', show_details=False):
                         (userID in context and 'context_filter' in i and i['context_filter'] == context[userID]):
                         if show_details: print ('tag:', i['tag'])
                         # a random response from the intent
-                        return print(random.choice(i['responses']))
+                        return random.choice(i['responses'])
 
             results.pop(0)
