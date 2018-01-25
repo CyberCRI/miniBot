@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os.path
+import sys
 
 # Set MODEL
 # If not already created, create model and train it
 appPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(appPath)
 if not os.path.isfile(os.path.join(appPath, "model/training_data")):
 	from model.trainBot import createModel
 	createModel()
