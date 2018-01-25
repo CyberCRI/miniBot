@@ -15,7 +15,7 @@ function talkToMiniBot() {
   // HTTP POST request for chatbot answer
   $.ajax({
   type: "POST",
-    url: "http://0.0.0.0:8888/minibot/api/msg",
+    url: "http://167.114.255.133:8888/minibot/api/msg",
     data: { msg: userInput },
     success: function ( data ) {
       botMsg = data["msg"];
