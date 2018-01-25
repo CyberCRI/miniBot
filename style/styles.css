@@ -38,6 +38,11 @@ div {
   text-align: center;
 }
 
+#historyDiv p {
+  color: var(--dark-color);
+  font-family: wider;
+}
+
  form {
    margin: 2px 20px;
    color: var(--light-color);
