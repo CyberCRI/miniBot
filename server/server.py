@@ -6,7 +6,7 @@ import sys
 # Set MODEL
 # If not already created, create model and train it
 appPath = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(appPath)
+sys.path.append(os.getcwd())
 if not os.path.isfile(os.path.join(appPath, "model/training_data")):
 	from model.trainBot import createModel
 	createModel()
