@@ -22,7 +22,7 @@ def createModel():
     # things we need for NLP
     stemmer = LancasterStemmer()
 
-    # import our chat-bot intents file
+    # import our chat-bot intents file from local path
     appPath = os.path.dirname(os.path.abspath(__file__))
     intentsPath = os.path.join(appPath, "intents.json")
     with open(intentsPath) as json_data:

@@ -19,7 +19,7 @@ import os
 # things we need for NLP
 stemmer = LancasterStemmer()
 
-# restore all of our data structures
+# restore all of our data structures from local files
 appPath = os.path.dirname(os.path.abspath(__file__))
 trainingDataPath = os.path.join(appPath, "training_data")
 data = pickle.load( open( trainingDataPath, "rb" ) )

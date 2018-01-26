@@ -1,15 +1,21 @@
 function talkToMiniBot() {
 
+  // Fetch user input
   var userInput = document.forms["userInput"]["userInput"].value;
+
+  // Check that the input is not empty
   if (userInput == "") {
     alert("Please say something.");
     return false;
   }
 
-  // If the input is valid, update history and request chatbot answer
+  // If the input is valid
+  // Update history
   var previousBotMsg = $("#botDiv").html();
   var userMsgHTML = "<p>" + userInput + "</p>";
   $("#historyDiv").append("<p><b>Bot:</b></p>", previousBotMsg, "<p><b>You:</b></p>", userMsgHTML);
+
+  // Empty input field
   document.forms["userInput"]["userInput"].value = "";
 
   // HTTP POST request for chatbot answer
@@ -20,10 +26,10 @@ function talkToMiniBot() {
     success: function ( data ) {
       botMsg = data["msg"];
       formattedMsg = "<p>" + botMsg + "</p>";
-      $("#botDiv").html(formattedMsg);
+      $("#botDiv").html(formattedMsg); // Update display with chatbot answer
     },
     dataType: "json"
   });
 
-  return false;
+  return false; // Do not submit form
 };
