@@ -201,3 +201,6 @@ def response(sentence, userID='123', show_details=False):
                         return random.choice(i['responses'])
 
             results.pop(0)
+    # if there was no match, default answer
+    else:
+        return("I apologise, I don't understand what you mean.")
