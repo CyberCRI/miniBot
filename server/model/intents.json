@@ -21,7 +21,7 @@
          "responses": ["We're open from 8:30am to 5pm every day except Wesdnesday, when we're only available by email.", "Our hours are 8:30am-5:30pm every day. On Wednesday, we only help by email."]
         },
         {"tag": "WIFI",
-         "patterns": ["How do I connect to the WIFI?", "Can I connect to WIFI?", "What wifi should I use?" ],
+         "patterns": ["How do I connect to the WIFI?", "Can I connect to WIFI?", "What wifi should I use?", "Can I have Wifi?" ],
          "responses": ["Are you employed by Descartes University?"],
          "context_set": "WIFIemployedDescartes"
         },
