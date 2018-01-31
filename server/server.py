@@ -24,6 +24,13 @@ def get_msg():
 	# Send answer
 	return jsonify({"msg": response})
 
+@app.route("/minibot/api/intents", methods=["GET", "POST"])
+def get_intents():
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+		return intents
+
 # Run app
 if __name__ == "__main__":
 	app.run("0.0.0.0", 8888) # 0.0.0.0 to enable external access
