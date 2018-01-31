@@ -29,7 +29,7 @@ def get_intents():
 	intentsPath = os.path.join(appPath, "model/intents.json")
 	with open(intentsPath) as json_data:
 	    intents = json.load(json_data)
-		return intents
+	return intents
 
 # Run app
 if __name__ == "__main__":
