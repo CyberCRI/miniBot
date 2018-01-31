@@ -22,11 +22,11 @@
         },
         {"tag": "phone:needed",
          "patterns": ["I need a phone", "can I get a phone?", "Buy me a phone" ],
-         "responses": ["Ask Julien to install you a land line in your office. We do not provide mobile phones."],
+         "responses": ["Ask Julien to install you a land line in your office. We do not provide mobile phones."]
         },
         {"tag": "printer:driver",
          "patterns": ["printer driver", "install printer", "I can't print", "can I have a driver for printing","I cannot find the printer driver." ],
-         "responses": ["Our shared printers need drivers. It's <a href="">there</a> for Linux, <a>there</a> for Windows and <a href=''>there</a> for Mac OS. You cannot print from a smartphone yet. I think"],
+         "responses": ["Our shared printers need drivers. It's <a href=''>there</a> for Linux, <a>there</a> for Windows and <a href=''>there</a> for Mac OS. You cannot print from a smartphone yet. I think."]
         },
         {"tag": "printer",
          "patterns": ["where can I find a printer?", "Can I print?", "How do I print?", "Can I have a printer?","I cannot find the printer." ],
