@@ -37,7 +37,10 @@
          "patterns": ["today"],
          "responses": ["For rentals today please call 1-800-MYMOPED", "Same-day rentals please call 1-800-MYMOPED"],
          "context_filter": "rentalday"
+        },
+        {"tag": "default",
+         "patterns": [""],
+         "responses": ["I apologise, I'm afraid I don't understand what you mean."]
         }
    ]
 }
-
