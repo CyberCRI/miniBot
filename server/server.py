@@ -18,7 +18,7 @@ app = Flask(__name__)
 CORS(app) # Enable queries from different domains
 
 # Set up logging
-logName = "log_" + datetime.today().isoformat() + ".log"
+logName = "log_" + datetime.datetime.now().isoformat() + ".log"
 logPath = os.path.join(appPath, "model/intents.json")
 logging.basicConfig(filename = logPath, level=logging.DEBUG)
 
