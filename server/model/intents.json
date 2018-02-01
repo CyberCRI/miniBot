@@ -73,6 +73,10 @@
          "patterns": ["No", "I don't think so.", "I am not.", "Nope." ],
          "responses": ["You need to use the Wifi named DESCARTES. There is a tutorial <a href=''>here</a>."],
          "context_filter": "WIFIresearcher"
-       }
+       },
+        {"tag": "default",
+         "patterns": [""],
+         "responses": ["I apologise, I'm afraid I don't understand what you mean."]
+        }
    ]
 }
