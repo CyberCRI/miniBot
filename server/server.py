@@ -27,8 +27,10 @@ logging.basicConfig(filename = logPath, level=logging.INFO)
 def get_msg():
 	# Receive message
 	data = request.form.get("msg")
+	logging.info("Received: " + data)
 	# Process it and get answer from bot
 	response = model.minibot.response(data)
+	logging.info("Sending: " + response)
 	# Send answer
 	return jsonify({"msg": response})
 
