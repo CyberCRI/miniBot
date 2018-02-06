@@ -18,9 +18,7 @@ app = Flask(__name__)
 CORS(app) # Enable queries from different domains
 
 # Set up logging
-logName = "log_" + datetime.datetime.now().isoformat() + ".log"
-logPath = os.path.join(appPath, logName)
-logging.basicConfig(filename = logPath, level=logging.INFO)
+import logchat
 
 # Create route for bot queries
 @app.route("/minibot/api/msg", methods=['GET', 'POST'])
@@ -28,13 +26,10 @@ def get_msg():
 	# Receive message
 	clientIP = request.remote_addr
 	data = request.form.get("msg")
-	logging.info("From: " + clientIP)
-	logging.info("Received: " + data)
 	# Process it and get answer from bot
 	response = model.minibot.response(data)
-	logging.info("Sending: " + response)
 	# Send answer
-	createMsgLog(clientIP, data, response)
+	logchat.createMsgLog(clientIP, data, response)
 	return jsonify({"msg": response})
 
 @app.route("/minibot/api/intents", methods=["GET", "POST"])
