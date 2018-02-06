@@ -34,6 +34,7 @@ def get_msg():
 	response = model.minibot.response(data)
 	logging.info("Sending: " + response)
 	# Send answer
+	createMsgLog(clientIP, data, response)
 	return jsonify({"msg": response})
 
 @app.route("/minibot/api/intents", methods=["GET", "POST"])
