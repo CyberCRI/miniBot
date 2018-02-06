@@ -67,7 +67,7 @@ schema = {
 
 # Create log from one message exchange
 def createMsgLog(userId, botId, userMsg, botMsg, status = "success", statusDetails = ""):
-    timestamp = datetime.datetime.now()
+    timestamp = str(datetime.datetime.now())
     content = {"userMsg" : userMsg, "botMsg" : botMsg}
     log = { "entryType" : "msg", "owner" : userId, "bot" : botId, "datetime" : timestamp, "content" : content, "status" : {"tag" : status}}
 
@@ -77,7 +77,7 @@ def createMsgLog(userId, botId, userMsg, botMsg, status = "success", statusDetai
 def saveLog(jsonLog):
     try:
         # Validate entry
-        validate(jsonLog, schema, format_checker=FormatChecker())
+        validate(jsonLog, schema)
         # Open client to database
         client = MongoClient('mongodb://localhost:27017/')
         db = client.test_log
