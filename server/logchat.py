@@ -62,7 +62,7 @@ schema = {
             }
         }
     },
-    required: ["entryType", "owner", "bot", "datetime", "content", "status"]
+    "required": ["entryType", "owner", "bot", "datetime", "content", "status"]
 }
 
 # Create log from one message exchange
