@@ -68,7 +68,7 @@ schema = {
 # Create log from one message exchange
 def createMsgLog(userId, botId = "minibot", userMsg, botMsg, status = "success", statusDetails = ""):
     timestamp = datetime.datetime.now()
-    content = {"userMsg" = userMsg, "botMsg" = botMsg}
+    content = {"userMsg" : userMsg, "botMsg" : botMsg}
     log = { "entryType" : "msg", "owner" : userId, "bot" : botId, "datetime" : timestamp, "content" : content, status : {"tag" : status}}
 
     saveLog(log)
