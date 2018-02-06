@@ -26,7 +26,9 @@ logging.basicConfig(filename = logPath, level=logging.INFO)
 @app.route("/minibot/api/msg", methods=['GET', 'POST'])
 def get_msg():
 	# Receive message
+	clientIP = request.remote_addr
 	data = request.form.get("msg")
+	logging.info("From: " + clientIP)
 	logging.info("Received: " + data)
 	# Process it and get answer from bot
 	response = model.minibot.response(data)
