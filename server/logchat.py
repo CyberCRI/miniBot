@@ -84,6 +84,8 @@ def saveLog(jsonLog):
         collection = db.test_collection
         post_id = db.posts.insert_one(jsonLog).inserted_id
         print("Correctly added log with ID " + post_id)
-    except:
+    except Exception as e:
         print("Invalid log")
         print(jsonLog)
+        print()
+        print(e)
