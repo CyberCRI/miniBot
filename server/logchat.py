@@ -77,7 +77,7 @@ def createMsgLog(userId, botId, userMsg, botMsg, status = "success", statusDetai
 def saveLog(jsonLog):
     try:
         # Validate entry
-        validate(jsonLog, schema, format_checker=jsonschema.FormatChecker())
+        validate(jsonLog, schema, format_checker=FormatChecker())
         # Open client to database
         client = MongoClient('mongodb://localhost:27017/')
         db = client.test_log
