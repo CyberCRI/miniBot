@@ -69,7 +69,7 @@ schema = {
 def createMsgLog(userId, botId, userMsg, botMsg, status = "success", statusDetails = ""):
     timestamp = datetime.datetime.now()
     content = {"userMsg" : userMsg, "botMsg" : botMsg}
-    log = { "entryType" : "msg", "owner" : userId, "bot" : "minibot", "datetime" : timestamp, "content" : content, status : {"tag" : status}}
+    log = { "entryType" : "msg", "owner" : userId, "bot" : botId, "datetime" : timestamp, "content" : content, status : {"tag" : status}}
 
     saveLog(log)
 

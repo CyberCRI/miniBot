@@ -29,7 +29,7 @@ def get_msg():
 	# Process it and get answer from bot
 	response = model.minibot.response(data)
 	# Send answer
-	logchat.createMsgLog(clientIP, data, response)
+	logchat.createMsgLog(clientIP, "minibot", data, response)
 	return jsonify({"msg": response})
 
 @app.route("/minibot/api/intents", methods=["GET", "POST"])
