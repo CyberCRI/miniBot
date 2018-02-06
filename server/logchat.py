@@ -85,4 +85,5 @@ def saveLog(jsonLog):
         post_id = db.posts.insert_one(jsonLog).inserted_id
         print("Correctly added log with ID " + post_id)
     except:
-        print("Invalid log\n" + jsonLog.dumps({'4': 5, '6': 7}, indent=4, separators=(',', ': ')))
+        print("Invalid log")
+        print(jsonLog)
