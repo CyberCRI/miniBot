@@ -76,7 +76,7 @@ def createMsgLog(userId, botId, userMsg, intent, botMsg, status = "success", sta
 
 def registerComplaint(logId):
     search = {"_id" : logId}
-    update = {"status" : {"tag" : status, "details" : "User complaint"}}
+    update = {"status" : {"tag" : "warning", "details" : "User complaint"}}
     # Open client to database
     client = MongoClient('mongodb://localhost:27017/')
     db = client.test_log
