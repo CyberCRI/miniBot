@@ -78,7 +78,7 @@ def get_intent():
 	# Fetch data if existing tag
 	data = intents.get(tag)
 	# Send data
-	return jsonify(intents)
+	return jsonify(data)
 
 # Run app
 if __name__ == "__main__":
