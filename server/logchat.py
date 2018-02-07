@@ -66,9 +66,9 @@ schema = {
 }
 
 # Create log from one message exchange
-def createMsgLog(userId, botId, userMsg, botMsg, status = "success", statusDetails = ""):
+def createMsgLog(userId, botId, userMsg, intent, botMsg, status = "success", statusDetails = ""):
     timestamp = str(datetime.datetime.now())
-    content = {"userMsg" : userMsg, "botMsg" : botMsg}
+    content = {"userMsg" : userMsg, "intent" : intent, "botMsg" : botMsg}
     log = { "entryType" : "msg", "owner" : userId, "bot" : botId, "datetime" : timestamp, "content" : content, "status" : {"tag" : status}}
 
     saveLog(log)

@@ -27,9 +27,9 @@ def get_msg():
 	clientIP = request.remote_addr
 	data = request.form.get("msg")
 	# Process it and get answer from bot
-	response = model.minibot.response(data)
+	(intent, response) = model.minibot.response(data)
 	# Send answer
-	logchat.createMsgLog(clientIP, "minibot", data, response)
+	logchat.createMsgLog(clientIP, "minibot", data, intent, response)
 	return jsonify({"msg": response})
 
 @app.route("/minibot/api/intents", methods=["GET", "POST"])
