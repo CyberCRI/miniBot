@@ -19,7 +19,7 @@ CORS(app) # Enable queries from different domains
 
 # Set up logging
 import logchat
-lastLogId = 0
+lastLogId = {}
 
 # Create route for bot queries
 @app.route("/minibot/api/msg", methods=['GET', 'POST'])
@@ -31,10 +31,23 @@ def get_msg():
 	(intent, response) = model.minibot.response(data)
 	# Log message exchange
 	logId = logchat.createMsgLog(clientIP, "minibot", data, intent, response)
-	lastLogId = logId
+	lastLogId[clientIP] = logId
 	# Send answer
 	return jsonify({"msg": response})
 
+# Create route to register improper bot response
+@app.route("/minibot/api/complain", methods=["GET", "POST"])
+def complainAboutAnswer():
+	# Get user id
+	clientIP = request.remote_addr
+	# If this user already has a conversation log, issue a warning for last exchange
+	try:
+		logId = lastLogId[clientIP]
+		print(logId)
+	except:
+		print("Warning: this user is complaining but has not yet chatted with the bot.")
+
+# Create route for checking all intents in bot
 @app.route("/minibot/api/intents", methods=["GET", "POST"])
 def get_intents():
 	# Load json data
@@ -44,6 +57,7 @@ def get_intents():
 	# Send all data
 	return jsonify(intents)
 
+# Create route for checking a specific intent in bot
 @app.route("/minibot/api/intent", methods=["GET", "POST"])
 def get_intent():
 	# Receive tag for requested intents
