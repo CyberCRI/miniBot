@@ -198,6 +198,6 @@ def response(sentence, userID='123', show_details=False):
                         (userID in context and 'context_filter' in i and i['context_filter'] == context[userID]):
                         if show_details: print ('tag:', i['tag'])
                         # a random response from the intent
-                        return random.choice(i['responses'])
+                        return (i['tag'], random.choice(i['responses']))
 
             results.pop(0)

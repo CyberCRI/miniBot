@@ -15,7 +15,7 @@ What you need for the server:
 ....*In your .bashrc or .bash_aliases file, add *alias python=python3*
 ....*run *$sudo ln -s /Library/Frameworks/Python.framework/Versions3.4/lib/python3.4/site-packages /usr/local/lib/python3.4/site-packages*
 ...If not and you need Python2 on this computer, I do not have the solution yet, you might have to modify some of the code
-..*Python3 packages flask, flask_cors, nltk, numpy, tflearn, tensorflow
+..*Python3 packages flask, flask_cors, nltk, numpy, tflearn, tensorflow, jsonschema
 ..*nltk data
 ...In command line: *sudo python3 -m nltk.downloader -d /usr/local/share/nltk_data all*
 ...Instructions for the interactive installer: http://www.nltk.org/data.html

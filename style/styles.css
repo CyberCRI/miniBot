@@ -43,14 +43,14 @@ div {
   font-family: wider;
 }
 
- form {
-   margin: 2px 20px;
+form {
+   margin: 2px 10px;
    color: var(--light-color);
    font-family: wider;
    font-size: 16pt;
  }
 
- input {
+input {
    width: 100%;
    padding: 12px 20px;
    margin: 12px 0px;
@@ -58,4 +58,29 @@ div {
    border-color: var(--black-color);
    font-family: wider;
    font-size: 16pt;
+}
+
+.buttonWrapper {
+  text-align: center;
+  width: auto;
+  margin: 2px 10px;
+  border-width: 0;
+}
+
+#badAnswerButton {
+  padding: 12px 20px;
+  margin:auto;
+  display:block;
+  border-width: thick;
+  border-style: groove;
+  border-radius: 25px 5px 25px 5px;
+  border-color: var(--black-color);
+  background-color: var(--black-color);
+  color: var(--light-color);
+  font-family: wider;
+  font-size: 16pt;
+}
+
+#badAnswerButton:hover {
+  background-color: var(--secondary-color);
 }
