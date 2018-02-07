@@ -44,10 +44,10 @@ def complainAboutAnswer():
 	try:
 		logId = lastLogId[clientIP]
 		print(logId)
-		return 1
+		return "OK"
 	except:
 		print("Warning: this user is complaining but has not yet chatted with the bot.")
-		return 0
+		return "Warning: this user is complaining but has not yet chatted with the bot."
 
 # Create route for checking all intents in bot
 @app.route("/minibot/api/intents", methods=["GET", "POST"])
