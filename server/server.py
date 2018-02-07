@@ -43,11 +43,15 @@ def complainAboutAnswer():
 	# If this user already has a conversation log, issue a warning for last exchange
 	try:
 		logId = lastLogId[clientIP]
-		logchat.registerComplaint(logId)
-		return "OK"
 	except:
 		print("Warning: this user is complaining but has not yet chatted with the bot.")
 		return "Warning: this user is complaining but has not yet chatted with the bot."
+	try:
+		logchat.registerComplaint(logId)
+		return "OK"
+	except Exception as e:
+		print(e)
+		return e
 
 # Create route for checking all intents in bot
 @app.route("/minibot/api/intents", methods=["GET", "POST"])
