@@ -81,7 +81,7 @@ def registerComplaint(logId):
     client = MongoClient('mongodb://localhost:27017/')
     db = client.test_log
     # Update log in database
-    db.posts.update_one(search, update)
+    db.posts.update_one(search, {"$set" : update})
 
 # Validate and save json logs
 def saveLog(jsonLog):
