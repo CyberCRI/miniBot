@@ -19,6 +19,7 @@ CORS(app) # Enable queries from different domains
 
 # Set up logging
 import logchat
+lastLogId = 0
 
 # Create route for bot queries
 @app.route("/minibot/api/msg", methods=['GET', 'POST'])
@@ -28,8 +29,10 @@ def get_msg():
 	data = request.form.get("msg")
 	# Process it and get answer from bot
 	(intent, response) = model.minibot.response(data)
+	# Log message exchange
+	logId = logchat.createMsgLog(clientIP, "minibot", data, intent, response)
+	lastLogId = logId
 	# Send answer
-	logchat.createMsgLog(clientIP, "minibot", data, intent, response)
 	return jsonify({"msg": response})
 
 @app.route("/minibot/api/intents", methods=["GET", "POST"])

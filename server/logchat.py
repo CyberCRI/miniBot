@@ -71,7 +71,8 @@ def createMsgLog(userId, botId, userMsg, intent, botMsg, status = "success", sta
     content = {"userMsg" : userMsg, "intent" : intent, "botMsg" : botMsg}
     log = { "entryType" : "msg", "owner" : userId, "bot" : botId, "datetime" : timestamp, "content" : content, "status" : {"tag" : status}}
 
-    saveLog(log)
+    logId = saveLog(log)
+    return logId
 
 # Validate and save json logs
 def saveLog(jsonLog):
@@ -82,7 +83,9 @@ def saveLog(jsonLog):
         client = MongoClient('mongodb://localhost:27017/')
         db = client.test_log
         collection = db.test_collection
-        post_id = db.posts.insert_one(jsonLog).inserted_id
+        # Save log in database
+        logId = db.posts.insert_one(jsonLog).inserted_id
+        return logId
     except Exception as e:
         print("Invalid log")
         print(jsonLog)
