@@ -74,6 +74,15 @@ def createMsgLog(userId, botId, userMsg, intent, botMsg, status = "success", sta
     logId = saveLog(log)
     return logId
 
+def registerComplaint(logId):
+    search = {"_id" : logId}
+    update = {"status" : {"tag" : status, "details" : "User complaint"}}
+    # Open client to database
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client.test_log
+    # Update log in database
+    db.posts.update_one(search, update)
+
 # Validate and save json logs
 def saveLog(jsonLog):
     try:
