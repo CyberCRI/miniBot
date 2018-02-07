@@ -33,3 +33,7 @@ function talkToMiniBot() {
 
   return false; // Do not submit form
 };
+
+function complainAboutAnswer() {
+  console.log("Hello")
+}
