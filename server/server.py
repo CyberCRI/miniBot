@@ -43,7 +43,7 @@ def complainAboutAnswer():
 	# If this user already has a conversation log, issue a warning for last exchange
 	try:
 		logId = lastLogId[clientIP]
-		print(logId)
+		logchat.registerComplaint(logId)
 		return "OK"
 	except:
 		print("Warning: this user is complaining but has not yet chatted with the bot.")
