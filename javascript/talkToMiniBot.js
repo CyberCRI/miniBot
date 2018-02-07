@@ -35,5 +35,14 @@ function talkToMiniBot() {
 };
 
 function complainAboutAnswer() {
-  console.log("Hello")
+  // HTTP POST request for chatbot answer
+  $.ajax({
+  type: "POST",
+    url: "http://167.114.255.133:8888/minibot/api/complain",
+    success: function ( data ) {
+      formattedMsg = "<p>" + "I apologise, I will notice my developers." + "</p>";
+      $("#botDiv").html(formattedMsg); // Update display with chatbot answer
+    },
+    dataType: "json"
+  });
 }
