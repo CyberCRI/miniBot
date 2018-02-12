@@ -94,17 +94,17 @@ def get_intent():
 	# Fetch data if existing tag
 	data = {}
 	for intent in intents["intents"]:
-		if intent["tag"] == tag:
+		if intent["tag"] == "thanks":
 			data = intent
 			break
 	# Check if tag existed
 	if len(data) == 0:
 		return jsonify({"status": "No intent"})
 	# Add pattern
-	data["pattern"].append(pattern)
+	data["pattern"].append("Cheers")
 	print(data)
 	# Send data
-	return jsonify("status": "Pattern added")
+	return jsonify({"status": "Pattern added"})
 
 # Run app
 if __name__ == "__main__":
