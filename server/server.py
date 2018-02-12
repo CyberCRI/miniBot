@@ -74,7 +74,8 @@ def get_intent():
 	    intents = json.load(json_data)
 	# Fetch data if existing tag
 	data = {}
-	for intent in jsonify(intents):
+	for intent in intents:
+		intent = json.loads(intent)
 		if intent["tag"] == tag:
 			data = intent["tag"]
 			break
