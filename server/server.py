@@ -73,7 +73,11 @@ def get_intent():
 	with open(intentsPath) as json_data:
 	    intents = json.load(json_data)
 	# Fetch data if existing tag
-	data = intents.get(tag)
+	data = {}
+	for itent in intents:
+		if intent["tag"] == tag:
+			data = intent["tag"]
+			break
 	# Send data
 	return jsonify(data)
 
