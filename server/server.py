@@ -104,7 +104,7 @@ def add_pattern():
 	data["patterns"].append("That's perfect")
 	# Save modification
 	intents["intents"][i] = data
-	print(intent)
+	print(intents)
 	# Send data
 	return jsonify({"status": "Pattern added"})
 
