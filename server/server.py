@@ -76,7 +76,7 @@ def get_intent():
 	data = {}
 	for intent in intents["intents"]:
 		if intent["tag"] == tag:
-			data = intent["tag"]
+			data = intent
 			break
 	# Send data
 	return jsonify(data)
