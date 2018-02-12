@@ -101,7 +101,7 @@ def add_pattern():
 	if len(data) == 0:
 		return jsonify({"status": "No intent"})
 	# Add pattern
-	data["pattern"].append("Cheers")
+	data["patterns"].append("Cheers")
 	print(data)
 	# Send data
 	return jsonify({"status": "Pattern added"})
