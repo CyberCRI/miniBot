@@ -66,7 +66,7 @@ def get_intents():
 # Create route for checking a specific intent in bot
 @app.route("/minibot/api/intent", methods=["GET", "POST"])
 def get_intent():
-	# Receive tag for requested intents
+	# Receive tag for requested intent
 	tag = request.form.get("tag")
 	# Load json data
 	intentsPath = os.path.join(appPath, "model/intents.json")
@@ -80,6 +80,31 @@ def get_intent():
 			break
 	# Send data
 	return jsonify(data)
+
+# Create route for adding a pattern to a specific intent in bot
+@app.route("/minibot/api/add_pattern", methods=["GET", "POST"])
+def get_intent():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	pattern = request.form.get("pattern")
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Fetch data if existing tag
+	data = {}
+	for intent in intents["intents"]:
+		if intent["tag"] == tag:
+			data = intent
+			break
+	# Check if tag existed
+	if len(data) == 0:
+		return jsonify({"status": "No intent"})
+	# Add pattern
+	data["pattern"].append(pattern)
+	print(data)
+	# Send data
+	return jsonify("status": "Pattern added")
 
 # Run app
 if __name__ == "__main__":
