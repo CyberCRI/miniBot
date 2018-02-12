@@ -1,8 +1,22 @@
 {"intents": [
         {"tag": "greeting",
           "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Hullo", "Yo"],
-         "responses": ["Hello, thanks for visiting", "Hi there, how can I help?"],
+         "responses": ["Hello, thanks for visiting", "Hi there, how can I help?","Hi. what can I do for you?"],
          "context_set": ""
+        },
+        {"tag": "name",
+          "patterns": ["What's your name?","Who are you?","Are you real?"],
+         "responses": ["I'm CRIBot. I'm not that smart, but I'll try to help. What can I do for you?"],
+         "context_set": ""
+        },
+        {"tag": "whereAreYou",
+          "patterns": ["Where are you?","Can I see you?"],
+         "responses": ["I'm CRIBot, I'm a virtual robot. I'm living in the cloud. Kinda like an angel. What can I do for you?"],
+         "context_set": ""
+        },
+        {"tag": "insult",
+         "patterns": ["Fuck you", "Stupid", "I hate you", "you suck", "dick"],
+         "responses": ["Even robots have pride. Respect silicon based life forms.","Grow up. Be polite.","Having a bad day eh?","I still love you. I'm programmed to.","Puny human, do not test my patience.","Let's work together on your problem and stay civil."]
         },
         {"tag": "goodbye",
          "patterns": ["Bye", "See you later", "Goodbye", "Bye bye", "See ya"],
@@ -13,20 +27,78 @@
          "responses": ["Happy to help!", "Any time!", "My pleasure","I live to serve."]
         },
         {"tag": "place",
-         "patterns": ["Where are you?","Where is your office?"],
-         "responses": ["We're on the 20th floor of Montparnasse tower, office 20.14."]
+         "patterns": ["Where is the IT team?","Where is IT's office?"],
+         "responses": ["<a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> is based on the 20th floor of Montparnasse tower, office 20.14."]
         },
         {"tag": "hours",
          "patterns": ["What hours are you open?", "What are your hours?", "When are you open?", "When can you help me?" ],
          "responses": ["We're open from 8:30am to 5pm every day except Wesdnesday, when we're only available by email.", "Our hours are 8:30am-5:30pm every day. On Wednesday, we only help by email."]
         },
+        {"tag": "googleDriveAccess",
+         "patterns": ["Google Drive","can everybody see my documents my files on google?"],
+         "responses": ["On you own drive, documents that you create are closed by default. Even administrators cannot see them unless you give them access. On a team drive, all team members can access any document by default. If you share a directory with a person or a group, any file created inside will be shared automatically."]
+        },
+        {"tag": "programmingHelp",
+         "patterns": ["book room","room reservation","GRR","need room","large conference"],
+         "responses": ["CRI rooms can be booked directly from your calendar. When you create or edit an event in Google Calendar, select the 'ROOMS' tab on the right side of your screen ('SALLES' in French) and choose an available room. Be careful to select a date <strong>before</strong> choosing a room, or it might not be available. View <a href='http://grr.cri-paris.org/help-listrooms.html'>here</a> all CRI rooms with pictures and a description."]
+        },
+        {"tag": "bookRoom",
+         "patterns": ["book room","room reservation","GRR","need room","large conference"],
+         "responses": ["CRI rooms can be booked directly from your calendar. When you create or edit an event in Google Calendar, select the 'ROOMS' tab on the right side of your screen ('SALLES' in French) and choose an available room. Be careful to select a date <strong>before</strong> choosing a room, or it might not be available. View <a href='http://grr.cri-paris.org/help-listrooms.html'>here</a> all CRI rooms with pictures and a description."]
+        },
+        {"tag": "laptopBorrow",
+         "patterns": ["borrow laptop","need laptop","borrow computer","need computer for conference"],
+         "responses": ["<a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> has a stock of laptop computers that can be borrowed for short periods (mostly PCs on Windows 10). Send them an email to check availabilities. If you need something for longer than a week, please ask well in advance. It can take up to three weeks to order specific equipment."]
+        },
+        {"tag": "projectorBorrow",
+         "patterns": ["projector","full HD"],
+         "responses": ["<a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> keeps two small projectors that can be borrowed. You can only borrow them for short periods, they're in high demand. They're Full HD and very light. You cannot yet book them in advance online (coming soon)."]
+        },
+        {"tag": "cableBorrow",
+         "patterns": ["cable", "HDMI", "borrow cable", "connect video", "video adapter","USB adapter" ],
+         "responses": ["<a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> keeps a stock of cables, connectors and adapters that you can borrow. Do you want a list of cables you can borrow?"],
+         "context_set": "listCables"
+        },
+        {"tag": "cableBorrowList",
+         "patterns": ["list cable", "please do", "Yes","Give me the list" ],
+         "responses": ["You can borrow :<ul><li>HDMI cable</li><li>HDMI to VGA</li><li>HDMI to Mac</li><li>VGA cable</li><li>Firewire adapters</li><li>Various connectors</li></ul>. Come to the <a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> office 20.14 during open hours."],
+         "context_filter": "listCables"
+        },
+        {"tag": "networkCableConnect",
+         "patterns": ["Can I connect by cable", "internet on cable", "ethernet" ],
+         "responses": ["You can borrow an ethernet cable at <a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> office 20.14. For security reasons, <a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> will have to declare your computer MACID in the network. Send your MACID by email or come with your laptop at office 20.14 during open hours."]
+        },
+        {"tag": "computerPb",
+         "patterns": ["My computer is broken", "Screen broken", "Laptop open", "Fix my computer", "Laptop computer not working", "repair my computer laptop" ],
+         "responses": ["Is it your professional computer (paid by CRI?)"],
+         "context_set": "whoseComputer"
+        },
+        {"tag": "computerPb:Professional",
+         "patterns": ["pro", "professional", "yes","it is." ],
+         "responses": ["Bring it to <a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT Team</a> office 20.14 during open hours. They'll fix it or lend you a new one."],
+         "context_filter": "whoseComputer"
+        },
+        {"tag": "computerPb:NotProfessional",
+         "patterns": ["from home", "my own computer", "no","it is mine." ],
+         "responses": ["<a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT Team</a> only  office 20.14 during open hours. They'll fix it or lend you a new one."],
+         "context_filter": "whoseComputer"
+        },
         {"tag": "phone:needed",
-         "patterns": ["I need a phone", "can I get a phone?", "Buy me a phone" ],
-         "responses": ["Ask Julien to install you a land line in your office. We do not provide mobile phones."]
+         "patterns": ["I need a phone", "can I get a phone?", "Buy me a phone","Give me a phone"],
+         "responses": ["Ask CRI's <a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT Team</a> to set up a phone land line in your office. We do not provide mobile phones."]
+        },
+        {"tag": "phone:needed:mobile",
+         "patterns": ["I need a mobile phone", "can I get a smartphone?", "smartphone"],
+         "responses": ["CRI does not provide mobile phones to staff and students. Sorry about that. Do you need anything else?"]
         },
         {"tag": "printer:driver",
          "patterns": ["printer driver", "install printer", "I can't print", "can I have a driver for printing","I cannot find the printer driver." ],
-         "responses": ["Our shared printers need drivers. It's <a href=''>there</a> for Linux, <a>there</a> for Windows and <a href=''>there</a> for Mac OS. You cannot print from a smartphone yet. I think."]
+         "responses": ["CRI shared printers need drivers. It's available for <a href=''>Linux</a>, <a href''>Windows</a> and <a href=''>Mac OS</a>. Contact <a href'https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> if you need help.<br>You cannot print from a smartphone yet."]
+        },
+        {"tag": "printerUSBKey",
+         "patterns": ["print from USB", "diretly on printer." ],
+         "responses": ["You can print from a USB key on the shared printer on each floor of the tower and in Cochin. Where are you?"],
+         "context_set": "whichBuildingToPrint"
         },
         {"tag": "printer",
          "patterns": ["where can I find a printer?", "Can I print?", "How do I print?", "Can I have a printer?","I cannot find the printer." ],
@@ -40,7 +112,7 @@
         },
         {"tag": "printer:whichBuildingToPrintTower21",
          "patterns": ["On the 21th floor", "Montparnasse tower 21", "Level 21","Twenty one","21"],
-         "responses": ["The shared printer is near the elevators at floor 21. Check both sides, you'll find it."],
+         "responses": ["On floor 21, the shared printer is near the elevators. Check both sides, you'll find it."],
          "context_filter": "whichBuildingToPrint"
         },
         {"tag": "printer:whichBuildingToPrintCochin",
@@ -55,7 +127,7 @@
         },
         {"tag": "WIFI:DescartesYes",
          "patterns": ["Yes", "I think so.", "I am." ],
-         "responses": ["Use your Descartes email to connect to DESCARTESPRO. There is a tutorial <a href=''>here</a>."],
+         "responses": ["Use your Descartes email to connect to DESCARTESPRO. There is a tutorial <a href=''>here</a>. The login and password change weekly (thank you Descartes University). They are written on the door of office 20.14."],
          "context_filter": "WIFIemployedDescartes"
         },
         {"tag": "WIFI:DescartesNo",
@@ -74,9 +146,9 @@
          "responses": ["You need to use the Wifi named DESCARTES. There is a tutorial <a href=''>here</a>."],
          "context_filter": "WIFIresearcher"
        },
-        {"tag": "default",
-         "patterns": [""],
-         "responses": ["I apologise, I'm afraid I don't understand what you mean."]
-        }
+       {"tag": "WIFI:password",
+        "patterns": ["Password wifi", "access Descartes Wifi", "Descartes Wifi", "Visitor Wifi" ],
+        "responses": ["Select the Wifi named 'DESCARTES' on your computer. Your browser will prompt you for a login and a password. They change every two weeks (thank you Descartes University). They are written on the door of office 20.14."]
+      }
    ]
 }
