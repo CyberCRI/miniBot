@@ -3,11 +3,8 @@ from flask_cors import CORS
 import os.path
 import sys
 import json
-<<<<<<< HEAD
-=======
 import logging
 import datetime
->>>>>>> master
 
 # Set MODEL
 # Set paths for imports
