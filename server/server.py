@@ -83,7 +83,7 @@ def get_intent():
 
 # Create route for adding a pattern to a specific intent in bot
 @app.route("/minibot/api/add_pattern", methods=["GET", "POST"])
-def get_intent():
+def add_pattern():
 	# Receive tag and pattern for requested intent
 	tag = request.form.get("tag")
 	pattern = request.form.get("pattern")
