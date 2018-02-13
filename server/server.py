@@ -94,14 +94,14 @@ def add_pattern():
 	# Fetch data if existing tag
 	data = {}
 	for i in range(len(intents["intents"])):
-		if intents["intents"][i]["tag"] == "thanks":
+		if intents["intents"][i]["tag"] == tag:
 			data = intents["intents"][i]
 			break
 	# Check if tag existed
 	if len(data) == 0:
 		return jsonify({"status": "No intent"})
 	# Add pattern
-	data["patterns"].append("That's perfect")
+	data["patterns"].append(pattern)
 	# Save modification
 	intents["intents"][i] = data
 	with open(intentsPath, 'w') as json_file:
