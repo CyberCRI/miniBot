@@ -110,8 +110,8 @@ def add_pattern():
 	return jsonify({"status": "Pattern added"})
 
 # Create route for adding a response to a specific intent in bot
-@app.route("/minibot/api/add_pattern", methods=["GET", "POST"])
-def add_pattern():
+@app.route("/minibot/api/add_response", methods=["GET", "POST"])
+def add_response():
 	# Receive tag and pattern for requested intent
 	tag = request.form.get("tag")
 	response = request.form.get("responses")
@@ -132,6 +132,33 @@ def add_pattern():
 	data["responses"].append(response)
 	# Save modification
 	intents["intents"][i] = data
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	return jsonify({"status": "Response added"})
+
+# Create route for adding an intent in bot
+@app.route("/minibot/api/add_intent", methods=["GET", "POST"])
+def add_intent():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	patterns = request.form.get("patterns")
+	responses = request.form.get("responses")
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Check if tag already exists
+	if len(data) == 0:
+		return jsonify({"status": "Cannot overwrite intent"})
+	# Construct new intent
+	data = {
+		"tag": tag,
+		"patterns": patterns,
+		"responses": responses
+	}
+	# Save modification
+	intents["intents"].append(data)
 	with open(intentsPath, 'w') as json_file:
 	    json.dump(intents, json_file)
 	# Send data
