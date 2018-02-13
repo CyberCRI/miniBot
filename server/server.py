@@ -109,6 +109,34 @@ def add_pattern():
 	# Send data
 	return jsonify({"status": "Pattern added"})
 
+# Create route for adding a response to a specific intent in bot
+@app.route("/minibot/api/add_pattern", methods=["GET", "POST"])
+def add_pattern():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	response = request.form.get("responses")
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Fetch data if existing tag
+	data = {}
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			data = intents["intents"][i]
+			break
+	# Check if tag existed
+	if len(data) == 0:
+		return jsonify({"status": "No intent"})
+	# Add pattern
+	data["responses"].append(response)
+	# Save modification
+	intents["intents"][i] = data
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	return jsonify({"status": "Response added"})
+
 # Run app
 if __name__ == "__main__":
 	app.run("0.0.0.0", 8888) # 0.0.0.0 to enable external access
