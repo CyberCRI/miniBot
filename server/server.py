@@ -207,8 +207,9 @@ def add_intent():
 	with open(intentsPath) as json_data:
 	    intents = json.load(json_data)
 	# Check if tag already exists
-	if len(data) == 0:
-		return jsonify({"status": "Cannot overwrite intent"})
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			return jsonify({"status": "Cannot overwrite intent"})
 	# Construct new intent
 	data = {
 		"tag": tag,
