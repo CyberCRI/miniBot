@@ -221,7 +221,7 @@ def add_intent():
 	with open(intentsPath, 'w') as json_file:
 	    json.dump(intents, json_file)
 	# Send data
-	return jsonify({"status": "Response added"})
+	return jsonify({"status": "Intent added"})
 
 # Run app
 if __name__ == "__main__":
