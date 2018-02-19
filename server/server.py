@@ -167,8 +167,8 @@ def add_response():
 	return jsonify({"status": "Response added"})
 
 # Create route for modifying a response of a specific intent in bot
-@app.route("/minibot/api/modify_pattern", methods=["GET", "POST"])
-def modify_pattern():
+@app.route("/minibot/api/modify_response", methods=["GET", "POST"])
+def modify_response():
 	# Receive tag and pattern for requested intent
 	tag = request.form.get("tag")
 	oldResponse = request.form.get("oldResponse")
