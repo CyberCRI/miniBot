@@ -108,12 +108,12 @@ def createIntentsModifLog(userId, botId, intent, newPattern = "", oldPattern = "
     content = {"intent" : intent}
     if len(oldPattern) > 0:
         content["oldPattern"] = oldPattern # Replace a pattern
-    else if len(oldResponse) > 0:
+    elif len(oldResponse) > 0:
         content["oldResponse"] = oldResponse # Replace a response
 
     if len(newPattern) > 0:
         content["newPattern"] = newPattern # Add or replace a pattern
-    else if len(newResponse) > 0:
+    elif len(newResponse) > 0:
         content["newResponse"] = newResponse # Add or replace a response
 
     if len(patterns) > 0: # Add an intent
