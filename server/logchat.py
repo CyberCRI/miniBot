@@ -13,7 +13,7 @@ schema = {
         "entryType" : {
             "description": "The type of entry",
             "type" : "string",
-            "enum": ["msg", "admin"]
+            "enum": ["msg", "admin", "train"]
         },
         "owner" : {
             "description" : "The identifier of the owner of the request",
@@ -78,7 +78,7 @@ schema = {
             }
         }
     },
-    "required": ["entryType", "owner", "bot", "datetime", "content", "status"]
+    "required": ["entryType", "owner", "bot", "datetime", "status"]
 }
 
 # Create log from one message exchange
@@ -128,6 +128,14 @@ def createIntentsModifLog(userId, botId, intent, newPattern = "", oldPattern = "
     logId = saveLog(log)
     return logId
 
+# Create and save log for train/retrain actions
+def registerRetrain(userId, botId, status = "success", statusDetails = ""):
+    timestamp = str(datetime.datetime.now())
+    log = {"entryType" : "train", "owner": userId, "bot" : botId, "datetime" : timestamp, "status" : {"tag" : status}}
+    if len(statusDetails) > 0:
+        log["status"]["details"] = statusDetails
+    logId = saveLog(log)
+    return logId
 
 
 # Validate and save json logs
