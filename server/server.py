@@ -230,7 +230,7 @@ def add_intent():
 	# Check if tag already exists
 	for i in range(len(intents["intents"])):
 		if intents["intents"][i]["tag"] == tag:
-			createIntentsModifLog(clientIP, "minibot", tag, patterns = patterns, responses = responses, status = "warning", statusDetails = "Cannot override existing intent"):
+			createIntentsModifLog(clientIP, "minibot", tag, patterns = patterns, responses = responses, status = "warning", statusDetails = "Cannot override existing intent")
 			return jsonify({"status": "Cannot overwrite intent"})
 	# Construct new intent
 	data = {
