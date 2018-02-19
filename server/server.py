@@ -5,6 +5,7 @@ import sys
 import json
 import logging
 import datetime
+import importlib
 
 # Set MODEL
 # Set paths for imports
@@ -245,6 +246,16 @@ def add_intent():
 	# Send data
 	logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, patterns = patterns, responses = responses)
 	return jsonify({"status": "Intent added"})
+
+# Create route for retraining bot
+@app.route("/minibot/api/retrain", methods=["GET", "POST"])
+def retrain():
+	# Delete training data
+	os.remove(os.path.join(appPath, "model/training_data"))
+	importlib.reload(model.minibot)
+
+	return jsonify({"status": "Retrained model"})
+
 
 # Run app
 if __name__ == "__main__":
