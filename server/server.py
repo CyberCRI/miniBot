@@ -167,7 +167,7 @@ def add_response():
 			break
 	# Check if tag existed
 	if len(data) == 0:
-		logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse, status = "error", statusDetails = "No intent")
+		logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = response, status = "error", statusDetails = "No intent")
 		return jsonify({"status": "No intent"})
 	# Add response
 	data["responses"].append(response)
@@ -176,7 +176,7 @@ def add_response():
 	with open(intentsPath, 'w') as json_file:
 	    json.dump(intents, json_file)
 	# Send data
-	logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse)
+	logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = response)
 	return jsonify({"status": "Response added"})
 
 # Create route for modifying a response of a specific intent in bot
