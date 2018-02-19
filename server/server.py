@@ -109,6 +109,35 @@ def add_pattern():
 	# Send data
 	return jsonify({"status": "Pattern added"})
 
+# Create route for modifying a pattern of a specific intent in bot
+@app.route("/minibot/api/modify_pattern", methods=["GET", "POST"])
+def modify_pattern():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	oldPattern = request.form.get("oldPattern")
+	newPattern = request.form.get("newPattern")
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Fetch data if existing tag
+	data = {}
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			data = intents["intents"][i]
+			break
+	# Check if tag existed
+	if len(data) == 0:
+		return jsonify({"status": "No intent"})
+	# Modify pattern
+	data["patterns"][data["patterns"].index(oldPattern)] = newPattern
+	# Save modification
+	intents["intents"][i] = data
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	return jsonify({"status": "Pattern modified"})
+
 # Create route for adding a response to a specific intent in bot
 @app.route("/minibot/api/add_response", methods=["GET", "POST"])
 def add_response():
@@ -128,7 +157,7 @@ def add_response():
 	# Check if tag existed
 	if len(data) == 0:
 		return jsonify({"status": "No intent"})
-	# Add pattern
+	# Add response
 	data["responses"].append(response)
 	# Save modification
 	intents["intents"][i] = data
@@ -136,6 +165,35 @@ def add_response():
 	    json.dump(intents, json_file)
 	# Send data
 	return jsonify({"status": "Response added"})
+
+# Create route for modifying a response of a specific intent in bot
+@app.route("/minibot/api/modify_pattern", methods=["GET", "POST"])
+def modify_pattern():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	oldResponse = request.form.get("oldResponse")
+	newResponse = request.form.get("newResponse")
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Fetch data if existing tag
+	data = {}
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			data = intents["intents"][i]
+			break
+	# Check if tag existed
+	if len(data) == 0:
+		return jsonify({"status": "No intent"})
+	# Modify response
+	data["responses"][data["responses"].index(oldResponse)] = newResponse
+	# Save modification
+	intents["intents"][i] = data
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	return jsonify({"status": "Response modified"})
 
 # Create route for adding an intent in bot
 @app.route("/minibot/api/add_intent", methods=["GET", "POST"])
