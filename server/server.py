@@ -130,7 +130,10 @@ def modify_pattern():
 	if len(data) == 0:
 		return jsonify({"status": "No intent"})
 	# Modify pattern
-	data["patterns"][data["patterns"].index(oldPattern)] = newPattern
+	try:
+		data["patterns"][data["patterns"].index(oldPattern)] = newPattern
+	except:
+		return jsonify({"status": "No matching pattern"})
 	# Save modification
 	intents["intents"][i] = data
 	with open(intentsPath, 'w') as json_file:
@@ -187,7 +190,10 @@ def modify_response():
 	if len(data) == 0:
 		return jsonify({"status": "No intent"})
 	# Modify response
-	data["responses"][data["responses"].index(oldResponse)] = newResponse
+	try:
+		data["responses"][data["responses"].index(oldResponse)] = newResponse
+	except:
+		return jsonify({"status": "No matching response"})
 	# Save modification
 	intents["intents"][i] = data
 	with open(intentsPath, 'w') as json_file:
