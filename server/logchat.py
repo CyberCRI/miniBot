@@ -13,7 +13,7 @@ schema = {
         "entryType" : {
             "description": "The type of entry",
             "type" : "string",
-            "enum": ["msg"]
+            "enum": ["msg", "admin"]
         },
         "owner" : {
             "description" : "The identifier of the owner of the request",
@@ -37,13 +37,29 @@ schema = {
                     "type" : "string"
                 },
                 "intent" : {
-                    "description" : "The intent extracted from userMsg",
+                    "description" : "The intent extracted from userMsg or specified by user",
                     "type" : "string"
                 },
                 "botMsg" : {
                     "description" : "The answer provided by the bot",
                     "type" : "string"
-                }
+                },
+                "oldPattern" : {
+                    "description" : "The pattern to replace",
+                    "type" : "string"
+                },
+                "newPattern" : {
+                    "description" : "The pattern-s to add or put in place of oldPattern",
+                    "type" : ["string", "array"]
+                },
+                "oldResponse" : {
+                    "description" : "The response to replace",
+                    "type" : "string"
+                },
+                "newResponse" : {
+                    "description" : "The response-s to add or put in place of oldResponse",
+                    "type" : ["string", "array"]
+                },
             }
         },
         "status" : {
@@ -70,6 +86,8 @@ def createMsgLog(userId, botId, userMsg, intent, botMsg, status = "success", sta
     timestamp = str(datetime.datetime.now())
     content = {"userMsg" : userMsg, "intent" : intent, "botMsg" : botMsg}
     log = { "entryType" : "msg", "owner" : userId, "bot" : botId, "datetime" : timestamp, "content" : content, "status" : {"tag" : status}}
+    if len(statusDetails) > 0:
+        log["status"]["details"] = statusDetails
 
     logId = saveLog(log)
     return logId
@@ -82,6 +100,35 @@ def registerComplaint(logId):
     db = client.test_log
     # Update log in database
     db.posts.update_one(search, {"$set" : update})
+
+def createIntentsModifLog(userId, botId, intent, newPattern = "", oldPattern = "", newResponse = "", oldResponse = "", patterns = [], responses = [], status = "success", statusDetails = ""):
+    timestamp = str(datetime.datetime.now())
+
+    # Create content depending on the type of modification
+    content = {"intent" : intent}
+    if len(oldPattern) > 0:
+        content["oldPattern"] = oldPattern # Replace a pattern
+    else if len(oldResponse) > 0:
+        content["oldResponse"] = oldResponse # Replace a response
+
+    if len(newPattern) > 0:
+        content["newPattern"] = newPattern # Add or replace a pattern
+    else if len(newResponse) > 0:
+        content["newResponse"] = newResponse # Add or replace a response
+
+    if len(patterns) > 0: # Add an intent
+        content["newPattern"] = patterns
+        content["newResponse"] = responses
+
+    # Create full log
+    log = {"entryType" : "admin", "owner" : userId, "bot" : botId, "datetime" : timestamp, "content" : content, "status" : {"tag" : status}}
+    if len(statusDetails) > 0:
+        log["status"]["details"] = statusDetails
+
+    logId = saveLog(log)
+    return logId
+
+
 
 # Validate and save json logs
 def saveLog(jsonLog):

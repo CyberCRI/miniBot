@@ -87,6 +87,7 @@ def add_pattern():
 	# Receive tag and pattern for requested intent
 	tag = request.form.get("tag")
 	pattern = request.form.get("pattern")
+	clientIP = request.remote_addr
 	# Load json data
 	intentsPath = os.path.join(appPath, "model/intents.json")
 	with open(intentsPath) as json_data:
@@ -99,6 +100,7 @@ def add_pattern():
 			break
 	# Check if tag existed
 	if len(data) == 0:
+		createIntentsModifLog(clientIP, "minibot", tag, newPattern = pattern, status = "error", statusDetails = "No intent")
 		return jsonify({"status": "No intent"})
 	# Add pattern
 	data["patterns"].append(pattern)
@@ -107,6 +109,7 @@ def add_pattern():
 	with open(intentsPath, 'w') as json_file:
 	    json.dump(intents, json_file)
 	# Send data
+	createIntentsModifLog(clientIP, "minibot", tag, newPattern = pattern)
 	return jsonify({"status": "Pattern added"})
 
 # Create route for modifying a pattern of a specific intent in bot
@@ -116,6 +119,7 @@ def modify_pattern():
 	tag = request.form.get("tag")
 	oldPattern = request.form.get("oldPattern")
 	newPattern = request.form.get("newPattern")
+	clientIP = request.remote_addr
 	# Load json data
 	intentsPath = os.path.join(appPath, "model/intents.json")
 	with open(intentsPath) as json_data:
@@ -128,17 +132,20 @@ def modify_pattern():
 			break
 	# Check if tag existed
 	if len(data) == 0:
+		createIntentsModifLog(clientIP, "minibot", tag, newPattern = newPattern, oldPattern = oldPattern, status = "error", statusDetails = "No intent")
 		return jsonify({"status": "No intent"})
 	# Modify pattern
 	try:
 		data["patterns"][data["patterns"].index(oldPattern)] = newPattern
 	except:
+		createIntentsModifLog(clientIP, "minibot", tag, newPattern = newPattern, oldPattern = oldPattern, status = "error", statusDetails = "No matching pattern")
 		return jsonify({"status": "No matching pattern"})
 	# Save modification
 	intents["intents"][i] = data
 	with open(intentsPath, 'w') as json_file:
 	    json.dump(intents, json_file)
 	# Send data
+	createIntentsModifLog(clientIP, "minibot", tag, newPattern = newPattern, oldPattern = oldPattern)
 	return jsonify({"status": "Pattern modified"})
 
 # Create route for adding a response to a specific intent in bot
@@ -147,6 +154,7 @@ def add_response():
 	# Receive tag and pattern for requested intent
 	tag = request.form.get("tag")
 	response = request.form.get("responses")
+	clientIP = request.remote_addr
 	# Load json data
 	intentsPath = os.path.join(appPath, "model/intents.json")
 	with open(intentsPath) as json_data:
@@ -159,6 +167,7 @@ def add_response():
 			break
 	# Check if tag existed
 	if len(data) == 0:
+		createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse, status = "error", statusDetails = "No intent")
 		return jsonify({"status": "No intent"})
 	# Add response
 	data["responses"].append(response)
@@ -167,6 +176,7 @@ def add_response():
 	with open(intentsPath, 'w') as json_file:
 	    json.dump(intents, json_file)
 	# Send data
+	createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse)
 	return jsonify({"status": "Response added"})
 
 # Create route for modifying a response of a specific intent in bot
@@ -176,6 +186,7 @@ def modify_response():
 	tag = request.form.get("tag")
 	oldResponse = request.form.get("oldResponse")
 	newResponse = request.form.get("newResponse")
+	clientIP = request.remote_addr
 	# Load json data
 	intentsPath = os.path.join(appPath, "model/intents.json")
 	with open(intentsPath) as json_data:
@@ -188,17 +199,20 @@ def modify_response():
 			break
 	# Check if tag existed
 	if len(data) == 0:
+		createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse, oldResponse = oldResponse, status = "error", statusDetails = "No intent")
 		return jsonify({"status": "No intent"})
 	# Modify response
 	try:
 		data["responses"][data["responses"].index(oldResponse)] = newResponse
 	except:
+		createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse, oldResponse = oldResponse, status = "error", statusDetails = "No matching response")
 		return jsonify({"status": "No matching response"})
 	# Save modification
 	intents["intents"][i] = data
 	with open(intentsPath, 'w') as json_file:
 	    json.dump(intents, json_file)
 	# Send data
+	createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse, oldResponse = oldResponse)
 	return jsonify({"status": "Response modified"})
 
 # Create route for adding an intent in bot
@@ -208,6 +222,7 @@ def add_intent():
 	tag = request.form.get("tag")
 	patterns = request.form.get("patterns")
 	responses = request.form.get("responses")
+	clientIP = request.remote_addr
 	# Load json data
 	intentsPath = os.path.join(appPath, "model/intents.json")
 	with open(intentsPath) as json_data:
@@ -215,6 +230,7 @@ def add_intent():
 	# Check if tag already exists
 	for i in range(len(intents["intents"])):
 		if intents["intents"][i]["tag"] == tag:
+			createIntentsModifLog(clientIP, "minibot", tag, patterns = patterns, responses = responses, status = "warning", statusDetails = "Cannot override existing intent"):
 			return jsonify({"status": "Cannot overwrite intent"})
 	# Construct new intent
 	data = {
@@ -227,6 +243,7 @@ def add_intent():
 	with open(intentsPath, 'w') as json_file:
 	    json.dump(intents, json_file)
 	# Send data
+	createIntentsModifLog(clientIP, "minibot", tag, patterns = patterns, responses = responses)
 	return jsonify({"status": "Intent added"})
 
 # Run app
