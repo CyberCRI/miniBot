@@ -1,8 +1,8 @@
-
+// Populate intents table on loading the page
 $(window).on('load', populateIntentsTable())
 
+// Get intents from server and put them in a table
 function populateIntentsTable() {
-  // Get intents from server and put them in a table
   $.ajax({
   type: "POST",
     url: "http://167.114.255.133:8888/minibot/api/intents",
