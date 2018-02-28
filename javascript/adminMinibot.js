@@ -117,34 +117,70 @@ function detailsIntentCheck() {
   oldResponse = $("select#selectResponse").find(":selected").text();
   newSentence = $("textarea#newSentence").val();
 
-  console.log(patternOrResponse);
-  console.log(oldPattern);
-  console.log(oldResponse);
-  console.log(newSentence);
-
-/*
   //Validate data
-  if (intent.length === 0 || patternsText.length === 0 || responsesText.length === 0) {
-    alert("You must provide an intent tag and at least one pattern and one response!");
+  if (patternOrResponse < 1) {
+    alert("Please specify whether you want to modify the pattern list or the response list");
+    return false;
+  }
+  else if (newSentence.length <= 0) {
+    alert("Please provide the new pattern/response");
     return false;
   }
 
-  // Parse patterns and responses
-  patterns = patternsText.split("\n")
-  responses = responsesText.split("\n")
-
-  // Send new intent to server
-  intentData = {"tag": intent, "patterns": patterns, "responses": responses};
-  console.log(intentData);
-  $.ajax({
-  type: "POST",
-    url: "http://167.114.255.133:8888/minibot/api/add_intent",
-    data: intentData,
-    success: function ( data ) {
-      reloadIntentsTable();
-    },
-    dataType: "json",
-  });*/
+  // Depending on the input, send the corresponding POST request
+  intent = $("#intentDetailsTag").text();
+  if (patternOrResponse == 1 && oldPattern == "Select a pattern to modify") {
+    // Add a pattern
+    intentData = {"tag": intent, "pattern": newSentence};
+    $.ajax({
+    type: "POST",
+      url: "http://167.114.255.133:8888/minibot/api/add_pattern",
+      data: intentData,
+      success: function ( data ) {
+        console.log(data);
+      },
+      dataType: "json",
+    });
+  }
+  else if (patternOrResponse == 1) {
+    // Modify a pattern
+    intentData = {"tag": intent, "oldPattern": oldPattern, "newPattern": newSentence};
+    $.ajax({
+    type: "POST",
+      url: "http://167.114.255.133:8888/minibot/api/modify_pattern",
+      data: intentData,
+      success: function ( data ) {
+        console.log(data);
+      },
+      dataType: "json",
+    });
+  }
+  else if (oldResponse == "Select a response to modify") {
+    // Add a response
+    intentData = {"tag": intent, "response": newSentence};
+    $.ajax({
+    type: "POST",
+      url: "http://167.114.255.133:8888/minibot/api/add_response",
+      data: intentData,
+      success: function ( data ) {
+        console.log(data);
+      },
+      dataType: "json",
+    });
+  }
+  else {
+    // Modify a response
+    intentData = {"tag": intent, "oldResponse": oldResponse, "newResponse": newSentence};
+    $.ajax({
+    type: "POST",
+      url: "http://167.114.255.133:8888/minibot/api/modify_response",
+      data: intentData,
+      success: function ( data ) {
+        console.log(data);
+      },
+      dataType: "json",
+    });
+  }
 
   return detailsIntentHide();
 }
