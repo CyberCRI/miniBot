@@ -3,10 +3,10 @@ $(window).on('load', setUp)
 
 function setUp() {
   newIntentHide();
-  $("#newIntentClose").click(newIntentHide())
-  $("#submitIntent").click(newIntentHide())
+  $("#newIntentClose").click(newIntentHide());
+  $("#submitIntent").click(newIntentHide());
   detailsIntentHide();
-  $("#detailsIntentClose").click(newIntentHide())
+  $("#detailsIntentClose").click(newIntentHide());
   populateIntentsTable();
 }
 
@@ -81,10 +81,7 @@ function detailsIntentShow(intentTag) {
     success: function ( data ) {
       // Find intent data in the table
       patterns = data["patterns"];
-          responses = data["responses"];
-          break;
-        }
-      }
+      responses = data["responses"];
       $("#intentDetailsTag").text(intentTag);
       $("#intentDetailsPatterns").text("Patterns: " + patterns.toString());
       $("#intentDetailsResponses").text("Responses: " + responses.toString());
