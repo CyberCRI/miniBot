@@ -74,6 +74,8 @@ function reloadIntentsTable() {
 
 // Display popup for intent details
 function detailsIntentShow(intentTag) {
+  $("#selectPattern").append('<option value="" selected disabled hidden>Select a pattern to modify</option>');
+  $("#selectResponse").append('<option value="" selected disabled hidden>Select a response to modify</option>');
   $("#detailsIntentDiv").show();
   $.ajax({
   type: "POST",
