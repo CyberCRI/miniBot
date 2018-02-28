@@ -5,6 +5,7 @@ import sys
 import json
 import logging
 import datetime
+import importlib
 
 # Set MODEL
 # Set paths for imports
@@ -66,16 +67,197 @@ def get_intents():
 # Create route for checking a specific intent in bot
 @app.route("/minibot/api/intent", methods=["GET", "POST"])
 def get_intent():
-	# Receive tag for requested intents
+	# Receive tag for requested intent
 	tag = request.form.get("tag")
 	# Load json data
 	intentsPath = os.path.join(appPath, "model/intents.json")
 	with open(intentsPath) as json_data:
 	    intents = json.load(json_data)
 	# Fetch data if existing tag
-	data = intents.get(tag)
+	data = {}
+	for intent in intents["intents"]:
+		if intent["tag"] == tag:
+			data = intent
+			break
 	# Send data
-	return jsonify(intents)
+	return jsonify(data)
+
+# Create route for adding a pattern to a specific intent in bot
+@app.route("/minibot/api/add_pattern", methods=["GET", "POST"])
+def add_pattern():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	pattern = request.form.get("pattern")
+	clientIP = request.remote_addr
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Fetch data if existing tag
+	data = {}
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			data = intents["intents"][i]
+			break
+	# Check if tag existed
+	if len(data) == 0:
+		logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newPattern = pattern, status = "error", statusDetails = "No intent")
+		return jsonify({"status": "No intent"})
+	# Add pattern
+	data["patterns"].append(pattern)
+	# Save modification
+	intents["intents"][i] = data
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newPattern = pattern)
+	return jsonify({"status": "Pattern added"})
+
+# Create route for modifying a pattern of a specific intent in bot
+@app.route("/minibot/api/modify_pattern", methods=["GET", "POST"])
+def modify_pattern():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	oldPattern = request.form.get("oldPattern")
+	newPattern = request.form.get("newPattern")
+	clientIP = request.remote_addr
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Fetch data if existing tag
+	data = {}
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			data = intents["intents"][i]
+			break
+	# Check if tag existed
+	if len(data) == 0:
+		logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newPattern = newPattern, oldPattern = oldPattern, status = "error", statusDetails = "No intent")
+		return jsonify({"status": "No intent"})
+	# Modify pattern
+	try:
+		data["patterns"][data["patterns"].index(oldPattern)] = newPattern
+	except:
+		logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newPattern = newPattern, oldPattern = oldPattern, status = "error", statusDetails = "No matching pattern")
+		return jsonify({"status": "No matching pattern"})
+	# Save modification
+	intents["intents"][i] = data
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newPattern = newPattern, oldPattern = oldPattern)
+	return jsonify({"status": "Pattern modified"})
+
+# Create route for adding a response to a specific intent in bot
+@app.route("/minibot/api/add_response", methods=["GET", "POST"])
+def add_response():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	response = request.form.get("response")
+	clientIP = request.remote_addr
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Fetch data if existing tag
+	data = {}
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			data = intents["intents"][i]
+			break
+	# Check if tag existed
+	if len(data) == 0:
+		logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = response, status = "error", statusDetails = "No intent")
+		return jsonify({"status": "No intent"})
+	# Add response
+	data["responses"].append(response)
+	# Save modification
+	intents["intents"][i] = data
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = response)
+	return jsonify({"status": "Response added"})
+
+# Create route for modifying a response of a specific intent in bot
+@app.route("/minibot/api/modify_response", methods=["GET", "POST"])
+def modify_response():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	oldResponse = request.form.get("oldResponse")
+	newResponse = request.form.get("newResponse")
+	clientIP = request.remote_addr
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Fetch data if existing tag
+	data = {}
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			data = intents["intents"][i]
+			break
+	# Check if tag existed
+	if len(data) == 0:
+		logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse, oldResponse = oldResponse, status = "error", statusDetails = "No intent")
+		return jsonify({"status": "No intent"})
+	# Modify response
+	try:
+		data["responses"][data["responses"].index(oldResponse)] = newResponse
+	except:
+		logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse, oldResponse = oldResponse, status = "error", statusDetails = "No matching response")
+		return jsonify({"status": "No matching response"})
+	# Save modification
+	intents["intents"][i] = data
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, newResponse = newResponse, oldResponse = oldResponse)
+	return jsonify({"status": "Response modified"})
+
+# Create route for adding an intent in bot
+@app.route("/minibot/api/add_intent", methods=["GET", "POST"])
+def add_intent():
+	# Receive tag and pattern for requested intent
+	tag = request.form.get("tag")
+	patterns = request.form.getlist("patterns[]")
+	responses = request.form.getlist("responses[]")
+	clientIP = request.remote_addr
+	# Load json data
+	intentsPath = os.path.join(appPath, "model/intents.json")
+	with open(intentsPath) as json_data:
+	    intents = json.load(json_data)
+	# Check if tag already exists
+	for i in range(len(intents["intents"])):
+		if intents["intents"][i]["tag"] == tag:
+			logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, patterns = patterns, responses = responses, status = "warning", statusDetails = "Cannot override existing intent")
+			return jsonify({"status": "Cannot overwrite intent"})
+	# Construct new intent
+	data = {
+		"tag": tag,
+		"patterns": patterns,
+		"responses": responses
+	}
+	# Save modification
+	intents["intents"].append(data)
+	with open(intentsPath, 'w') as json_file:
+	    json.dump(intents, json_file)
+	# Send data
+	logId = logchat.createIntentsModifLog(clientIP, "minibot", tag, patterns = patterns, responses = responses)
+	return jsonify({"status": "Intent added"})
+
+# Create route for retraining bot
+@app.route("/minibot/api/retrain", methods=["GET", "POST"])
+def retrain():
+	# Delete training data
+	os.remove(os.path.join(appPath, "model/training_data"))
+	importlib.reload(model.minibot)
+
+	clientIP = request.remote_addr
+	logId = logchat.registerRetrain(clientIP, "minibot")
+	return jsonify({"status": "Retrained model"})
+
 
 # Run app
 if __name__ == "__main__":

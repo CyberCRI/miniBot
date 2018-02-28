@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>miniBot</title>
+  <meta name="description" content="miniBot interface">
+  <meta name="author" content="Emma Barme">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.4.2/css/tabulator.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.4.2/js/tabulator.min.js"></script>
+  <script src="./javascript/adminMinibot.js"></script>
+
+</head>
+
+<body>
+  <div id="intents-table"></div>
+  <button id="newIntent" onclick="newIntentShow()">Create a new intent</button>
+  <button id="refreshTraining" onclick="refreshTraining()">Retrain the bot</button>
+
+  <div id="detailsIntentDiv" style="display:block">
+    <!-- Popup Div Starts Here -->
+    <div id="detailsIntentPopup">
+      <h3 id="intentDetailsTag">Intent</h3>
+      <p id="intentDetailsPatterns">Patterns: </p>
+      <p id="intentDetailsResponses">Responses: </p>
+      <form action="#" id="detailsIntentForm" method="post" name="form">
+        <h2>Modify the intent</h2>
+        <hr>
+        <select id="modifType" name="modifType">
+          <option value="" selected disabled hidden>Are you modifying the pattern list or the response list?</option>
+          <option value=1>Pattern</option>
+          <option value=2>Response</option>
+        </select>
+        <select id="selectPattern" name="selectPattern">
+        </select>
+        <select id="selectResponse" name="selectResponse">
+        </select>
+        <textarea id="newSentence" name="newSentence" placeholder="New pattern or response" type="text"></textarea>
+        <button id="submitDetailsIntent" onclick="detailsIntentCheck()">Send</button>
+      </form>
+      <button id="detailsIntentClose" onclick="detailsIntentHide()">Close</button>
+    </div>
+  </div>
+  <!-- Popup Div Ends Here -->
+
+  <div id="newIntentDiv" style="display:block">
+    <!-- Popup Div Starts Here -->
+    <div id="newIntentPopup">
+      <form action="#" id="newIntentForm" method="post" name="form">
+        <h2>Add an intent</h2>
+        <p>Enter each pattern/response on a different line</p>
+        <hr>
+        <input id="intent" name="intent" placeholder="Unique intent tag" type="text">
+        <textarea id="patterns" name="patterns" placeholder="Patterns" type="text"></textarea>
+        <textarea id="responses" name="responses" placeholder="Responses"></textarea>
+        <button id="submitIntent" onclick="newIntentCheck()">Send</button>
+        <button id="newIntentClose" onclick="newIntentHide()">Close</button>
+      </form>
+    </div>
+  </div>
+  <!-- Popup Div Ends Here -->
+
+</body>
+</html>
