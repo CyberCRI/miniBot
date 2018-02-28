@@ -91,15 +91,15 @@ function setUpDetailsIntent(data) {
   patterns = data["patterns"];
   responses = data["responses"];
   $("#intentDetailsTag").text(data["tag"]);
-  $("#intentDetailsPatterns").text("Patterns: " + patterns.join("<br>"));
-  $("#intentDetailsResponses").text("Responses: " + responses.join("<br>"));
+  $("#intentDetailsPatterns").html("Patterns: " + patterns.join("<br>"));
+  $("#intentDetailsResponses").html("Responses: " + responses.join("<br>"));
 
   // Add patterns and responses in modification form
   for (var i = 0; i < patterns.length; i++) {
-    selectPattern.add(patterns[i]);
+    $("#selectPattern").add(patterns[i]);
   }
   for (var i = 0; i < responses.length; i++) {
-    selectResponse.add(responses[i]);
+    $("#selectResponse").add(responses[i]);
   }
 }
 
