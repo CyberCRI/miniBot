@@ -5,6 +5,7 @@ function setUp() {
   newIntentHide();
   $("#newIntentClose").click(newIntentHide())
   $("#submitIntent").click(newIntentHide())
+  $("#detailsIntentClose").click(newIntentHide())
   populateIntentsTable();
 }
 
