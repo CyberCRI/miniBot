@@ -254,6 +254,7 @@ def retrain():
 	os.remove(os.path.join(appPath, "model/training_data"))
 	importlib.reload(model.minibot)
 
+	clientIP = request.remote_addr
 	logId = logchat.registerRetrain(clientIP, "minibot")
 	return jsonify({"status": "Retrained model"})
 
