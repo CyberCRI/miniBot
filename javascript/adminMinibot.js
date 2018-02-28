@@ -77,7 +77,7 @@ function detailsIntentShow(intentTag) {
   $.ajax({
   type: "POST",
     url: "http://167.114.255.133:8888/minibot/api/intent",
-    data: { "tag": intent },
+    data: { "tag": intentTag },
     success: function ( data ) {
       // Find intent data in the table
       patterns = data["patterns"];
