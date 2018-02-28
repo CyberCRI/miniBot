@@ -183,6 +183,7 @@ function detailsIntentCheck() {
 // Close popup for intent details
 function detailsIntentHide() {
   $("#detailsIntentDiv").hide();
+  $("#detailsIntentForm")[0].reset();
   return false;
 }
 
