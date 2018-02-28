@@ -26,6 +26,23 @@
       <h3 id="intentDetailsTag">Intent</h3>
       <p id="intentDetailsPatterns">Patterns: </p>
       <p id="intentDetailsResponses">Responses: </p>
+      <form action="#" id="newIntentForm" method="post" name="form">
+        <h2>Modify the intent</h2>
+        <hr>
+        <select name="selectPattern">
+          <option value="" selected disabled hidden>Are you modifying the pattern list or the response list?</option>
+          <option value=1>Pattern</option>
+          <option value=2>Response</option>
+        </select>
+        <select name="selectPattern">
+          <option value="" selected disabled hidden>Select a pattern to modify</option>
+        </select>
+        <select name="selectResponse">
+          <option value="" selected disabled hidden>Select a response to modify</option>
+        </select>
+        <textarea id="newSentence" name="newSentence" placeholder="New pattern or response" type="text"></textarea>
+        <button id="submitDetailsIntent" onclick="">Send</button>
+      </form>
       <button id="detailsIntentClose" onclick="detailsIntentHide()">Close</button>
     </div>
   </div>
