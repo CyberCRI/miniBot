@@ -18,5 +18,25 @@
 
 <body>
   <div id="intents-table"></div>
+  <button id="newIntent" onclick="newIntentShow()">Create a new intent</button>
+
+  <div id="newIntentDiv" style="display:block">
+    <!-- Popup Div Starts Here -->
+    <div id="newIntentPopup">
+      <!-- Contact Us Form -->
+      <form action="#" id="newIntentForm" method="post" name="form">
+        <h2>Contact Us</h2>
+        <p>Enter each pattern/response on a different line</p>
+        <hr>
+        <input id="intent" name="intent" placeholder="Unique intent tag" type="text">
+        <textarea id="patterns" name="patterns" placeholder="Patterns" type="text"></textarea>
+        <textarea id="responses" name="responses" placeholder="Responses"></textarea>
+        <button id="submitIntent" onclick="newIntentCheck()">Send</button>
+        <button id="newIntentClose" onclick="newIntentHide()">Close</button>
+      </form>
+    </div>
+  </div>
+  <!-- Popup Div Ends Here -->
+
 </body>
 </html>

@@ -221,8 +221,8 @@ def modify_response():
 def add_intent():
 	# Receive tag and pattern for requested intent
 	tag = request.form.get("tag")
-	patterns = request.form.get("patterns")
-	responses = request.form.get("responses")
+	patterns = request.form.get("patterns[]")
+	responses = request.form.get("responses[]")
 	clientIP = request.remote_addr
 	# Load json data
 	intentsPath = os.path.join(appPath, "model/intents.json")
