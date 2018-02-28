@@ -110,12 +110,19 @@ function detailsIntentHide() {
 }
 
 // Parse input for intent modification
-function detailsIntentCheck() {/*
+function detailsIntentCheck() {
   // Get form data
-  intent = $("input#intent").val();
-  patternsText = $("textarea#patterns").val();
-  responsesText = $("textarea#responses").val();
+  patternOrResponse = $("select#modifType").find(":selected").val();
+  oldPattern = $("select#selectPattern").find(":selected").text();
+  oldResponse = $("select#selectResponse").find(":selected").text();
+  newSentence = $("textarea#newSentence").val();
 
+  console.log(patternOrResponse);
+  console.log(oldPattern);
+  console.log(oldResponse);
+  console.log(newSentence);
+
+/*
   //Validate data
   if (intent.length === 0 || patternsText.length === 0 || responsesText.length === 0) {
     alert("You must provide an intent tag and at least one pattern and one response!");

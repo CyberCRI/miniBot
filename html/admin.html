@@ -29,7 +29,7 @@
       <form action="#" id="newIntentForm" method="post" name="form">
         <h2>Modify the intent</h2>
         <hr>
-        <select name="selectPattern">
+        <select id="modifType" name="modifType">
           <option value="" selected disabled hidden>Are you modifying the pattern list or the response list?</option>
           <option value=1>Pattern</option>
           <option value=2>Response</option>
@@ -41,7 +41,7 @@
           <option value="" selected disabled hidden>Select a response to modify</option>
         </select>
         <textarea id="newSentence" name="newSentence" placeholder="New pattern or response" type="text"></textarea>
-        <button id="submitDetailsIntent" onclick="">Send</button>
+        <button id="submitDetailsIntent" onclick="detailsIntentCheck()">Send</button>
       </form>
       <button id="detailsIntentClose" onclick="detailsIntentHide()">Close</button>
     </div>
