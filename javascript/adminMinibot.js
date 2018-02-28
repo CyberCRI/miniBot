@@ -5,6 +5,7 @@ function setUp() {
   newIntentHide();
   $("#newIntentClose").click(newIntentHide())
   $("#submitIntent").click(newIntentHide())
+  detailsIntentHide();
   $("#detailsIntentClose").click(newIntentHide())
   populateIntentsTable();
 }
@@ -79,13 +80,8 @@ function detailsIntentShow(intentTag) {
     data: { "tag": intent },
     success: function ( data ) {
       // Find intent data in the table
-      patterns = [];
-      responses = [];
-      for (var i = 0; i < data["intents"].length; i++) {
-        intent = data["intents"][i];
-        if (intent["tag"] == intentTag) {
-          patterns = intent["patterns"];
-          responses = intent["responses"];
+      patterns = data["patterns"];
+          responses = data["responses"];
           break;
         }
       }
