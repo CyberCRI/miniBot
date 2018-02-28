@@ -171,7 +171,7 @@ function detailsIntentCheck() {
       url: "http://167.114.255.133:8888/minibot/api/modify_response",
       data: intentData,
       success: function ( data ) {
-        console.log(data);
+        reloadIntentsTable();
       },
       dataType: "json",
     });
