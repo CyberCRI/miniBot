@@ -79,18 +79,29 @@ function detailsIntentShow(intentTag) {
     url: "http://167.114.255.133:8888/minibot/api/intent",
     data: { "tag": intentTag },
     success: function ( data ) {
-      // Find intent data in the table
-      patterns = data["patterns"];
-      responses = data["responses"];
-      $("#intentDetailsTag").text(intentTag);
-      $("#intentDetailsPatterns").text("Patterns: " + patterns.join("<br>"));
-      $("#intentDetailsResponses").text("Responses: " + responses.join("<br>"));
+      setUpDetailsIntent(data);
     },
     dataType: "json"
   });
   return false;
 }
 
+function setUpDetailsIntent(data) {
+  // Display details
+  patterns = data["patterns"];
+  responses = data["responses"];
+  $("#intentDetailsTag").text(intentTag);
+  $("#intentDetailsPatterns").text("Patterns: " + patterns.join("<br>"));
+  $("#intentDetailsResponses").text("Responses: " + responses.join("<br>"));
+
+  // Add patterns and responses in modification form
+  for (int i = 0; i < len(patterns); i++) {
+    selectPattern.add(patterns[i]);
+  }
+  for (int i = 0; i < len(responses); i++) {
+    selectResponse.add(responses[i]);
+  }
+}
 
 // Close popup for intent details
 function detailsIntentHide() {
