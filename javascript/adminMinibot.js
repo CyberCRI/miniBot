@@ -6,7 +6,8 @@ function setUp() {
   $("#newIntentClose").click(newIntentHide());
   $("#submitIntent").click(newIntentHide());
   detailsIntentHide();
-  $("#detailsIntentClose").click(newIntentHide());
+  $("#detailsIntentClose").click(detailsIntentHide());
+  $("#submitDetailsIntent").click(detailsIntentHide());
   populateIntentsTable();
 }
 
@@ -103,12 +104,6 @@ function setUpDetailsIntent(data) {
   }
 }
 
-// Close popup for intent details
-function detailsIntentHide() {
-  $("#detailsIntentDiv").hide();
-  return false;
-}
-
 // Parse input for intent modification
 function detailsIntentCheck() {
   // Get form data
@@ -184,6 +179,13 @@ function detailsIntentCheck() {
 
   return detailsIntentHide();
 }
+
+// Close popup for intent details
+function detailsIntentHide() {
+  $("#detailsIntentDiv").hide();
+  return false;
+}
+
 
 // Display popup to create new intent
 function newIntentShow() {
