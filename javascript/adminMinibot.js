@@ -184,6 +184,8 @@ function detailsIntentCheck() {
 function detailsIntentHide() {
   $("#detailsIntentDiv").hide();
   $("#detailsIntentForm")[0].reset();
+  $("#selectPattern").empty();
+  $("#selectResponse").empty();
   return false;
 }
 
