@@ -95,10 +95,10 @@ function setUpDetailsIntent(data) {
   $("#intentDetailsResponses").text("Responses: " + responses.join("<br>"));
 
   // Add patterns and responses in modification form
-  for (int i = 0; i < len(patterns); i++) {
+  for (var i = 0; i < patterns.length; i++) {
     selectPattern.add(patterns[i]);
   }
-  for (int i = 0; i < len(responses); i++) {
+  for (var i = 0; i < responses.length; i++) {
     selectResponse.add(responses[i]);
   }
 }
