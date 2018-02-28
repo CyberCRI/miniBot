@@ -233,3 +233,16 @@ function newIntentHide() {
   $("#newIntentForm")[0].reset();
   return false;
 }
+
+function refreshTraining() {
+  $("#refreshTraining").prop("disabled", true);
+  $.ajax({
+  type: "POST",
+    url: "http://167.114.255.133:8888/minibot/api/retrain",
+    data: intentData,
+    success: function ( data ) {
+      $("#refreshTraining").prop("disabled", false);
+    },
+    dataType: "json",
+  });
+}
