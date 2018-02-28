@@ -35,7 +35,7 @@ function populateIntentsTable() {
               {title:"Example response", field:"response", align:"left"},
           ],
           rowClick:function(e, row){ //trigger an alert message when the row is clicked
-              alert("Row " + row.getData().id + " Clicked!!!!");
+              detailsIntentShow(row.getData().id);
           },
       });
 
@@ -67,6 +67,74 @@ function reloadIntentsTable() {
     },
     dataType: "json"
   });
+}
+
+// Display popup for intent details
+function detailsIntentShow(intentTag) {
+  $("#detailsIntentDiv").show();
+  $.ajax({
+  type: "POST",
+    url: "http://167.114.255.133:8888/minibot/api/intent",
+    data: { "tag": intent },
+    success: function ( data ) {
+      // Find intent data in the table
+      patterns = [];
+      responses = [];
+      for (var i = 0; i < data["intents"].length; i++) {
+        intent = data["intents"][i];
+        if (intent["tag"] == intentTag) {
+          patterns = intent["patterns"];
+          responses = intent["responses"];
+          break;
+        }
+      }
+      $("#intentDetailsTag").text(intentTag);
+      $("#intentDetailsPatterns").text("Patterns: " + patterns.toString());
+      $("#intentDetailsResponses").text("Responses: " + responses.toString());
+    },
+    dataType: "json"
+  });
+  return false;
+}
+
+
+// Close popup for intent details
+function detailsIntentHide() {
+  $("#detailsIntentDiv").hide();
+  return false;
+}
+
+// Parse input for intent modification
+function detailsIntentCheck() {/*
+  // Get form data
+  intent = $("input#intent").val();
+  patternsText = $("textarea#patterns").val();
+  responsesText = $("textarea#responses").val();
+
+  //Validate data
+  if (intent.length === 0 || patternsText.length === 0 || responsesText.length === 0) {
+    alert("You must provide an intent tag and at least one pattern and one response!");
+    return false;
+  }
+
+  // Parse patterns and responses
+  patterns = patternsText.split("\n")
+  responses = responsesText.split("\n")
+
+  // Send new intent to server
+  intentData = {"tag": intent, "patterns": patterns, "responses": responses};
+  console.log(intentData);
+  $.ajax({
+  type: "POST",
+    url: "http://167.114.255.133:8888/minibot/api/add_intent",
+    data: intentData,
+    success: function ( data ) {
+      reloadIntentsTable();
+    },
+    dataType: "json",
+  });*/
+
+  return detailsIntentHide();
 }
 
 // Display popup to create new intent
