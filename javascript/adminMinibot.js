@@ -96,10 +96,10 @@ function setUpDetailsIntent(data) {
 
   // Add patterns and responses in modification form
   for (var i = 0; i < patterns.length; i++) {
-    $("#selectPattern").add(patterns[i]);
+    $("#selectPattern").append('<option value="' + i + '">' + patterns[i] + '</option>');
   }
   for (var i = 0; i < responses.length; i++) {
-    $("#selectResponse").add(responses[i]);
+    $("#selectResponse").append('<option value="' + i + '">' + responses[i] + '</option>');
   }
 }
 
