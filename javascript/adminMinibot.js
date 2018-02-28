@@ -83,8 +83,8 @@ function detailsIntentShow(intentTag) {
       patterns = data["patterns"];
       responses = data["responses"];
       $("#intentDetailsTag").text(intentTag);
-      $("#intentDetailsPatterns").text("Patterns: " + patterns.join("\n"));
-      $("#intentDetailsResponses").text("Responses: " + responses.join("\n"));
+      $("#intentDetailsPatterns").text("Patterns: " + patterns.join("<br>"));
+      $("#intentDetailsResponses").text("Responses: " + responses.join("<br>"));
     },
     dataType: "json"
   });
