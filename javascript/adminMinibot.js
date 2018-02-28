@@ -90,7 +90,7 @@ function setUpDetailsIntent(data) {
   // Display details
   patterns = data["patterns"];
   responses = data["responses"];
-  $("#intentDetailsTag").text(intentTag);
+  $("#intentDetailsTag").text(data["tag"]);
   $("#intentDetailsPatterns").text("Patterns: " + patterns.join("<br>"));
   $("#intentDetailsResponses").text("Responses: " + responses.join("<br>"));
 
