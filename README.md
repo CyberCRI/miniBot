@@ -35,6 +35,8 @@ The minimalist client is divided into two pages:
 * The admin page where one can see all the training content, modify existing content or add new content, as well as retrain the bot with the new content
 ### Server
 The server mediates the requests from the client and logs all proceedings to a MongoDB database.
+#### TODO
+Add admin function to delete an intent/pattern/response
 ### NLP model
 The core of the bot is a simple [bag-of-words system](https://en.wikipedia.org/wiki/Bag-of-words_model). The implementation was modified from a [tutorial](https://chatbotsmagazine.com/contextual-chat-bots-with-tensorflow-4391749d0077) to bring the training and using steps in one pipeline. It relies on NLTK library to generate a neural network intent classifier.
 
@@ -76,10 +78,11 @@ What you need for the server:
     * In your .bashrc or .bash_aliases file, add *alias python=python3*
     * run *$sudo ln -s /Library/Frameworks/Python.framework/Versions3.4/lib/python3.4/site-packages /usr/local/lib/python3.4/site-packages*
   *If not and you need Python2 on this computer, I do not have the solution yet, you might have to modify some of the code
-* Python3 packages flask, flask_cors, nltk, numpy, tflearn, tensorflow, jsonschema
+* Python3 packages flask, flask_cors, nltk, numpy, tflearn, tensorflow, jsonschema, pymongo
 * nltk data
   * In command line: *sudo python3 -m nltk.downloader -d /usr/local/share/nltk_data all*
   * Instructions for the interactive installer: http://www.nltk.org/data.html
+* [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
 What you need for the client:
 * A localhost server (I recommend installing LAMP/MAMP/WAMP)
@@ -102,5 +105,5 @@ What you need for the client:
 
 ### Costumise the content
 The code for the chatbot was taken from https://chatbotsmagazine.com/contextual-chat-bots-with-tensorflow-4391749d0077
-You can change your chatbot's detected intents and possible answers in /minibot/server/model/intents.json
+You can change your chatbot's detected intents and possible answers directly in /minibot/server/model/intents.json or from the client admin interface.
 
