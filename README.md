@@ -1,5 +1,6 @@
 # miniBot
 Minimal Python chatbot server with associated client web interface
+
 To use as a template for chatbot projects
 
 ## Origin and aims of the project
@@ -22,20 +23,45 @@ The moment we brought up the possibility of chatbots at the CRI, many people cam
 ### Specific goal of this template
 We were not satisfied with the level of flexibility offered by free develop-your-own-chatbot APIs and platforms. They might be suitable to develop a costumer service first-responder or a commercial gateway but they are not enough for some of the atypical use cases we are hoping to create.
 
-The goal of this repository is to build a template chatbot that can easily be replicated and trained with new content. For this we are developping three components:
+The goal of this repository is to build a template chatbot that can easily be replicated and trained with new content. In particular, we want it to be possible to test new chatbots' language processing and server functions without having to develop a specific and proper user interface. For this we are developping three components:
 * A minimalist web client interface that can be used to test the behaviour of the chatbot and modify the training content
 * A server that hosts the natural language processing core, receives requests, forward them to this core, send back the core's answer and logs the exchange
 * A natural language processing module that trains on provided content and can then provide a suitable answer to new requests
 
 ## Current state
+### Client
+The minimalist client is divided into two pages:
+* The user page where one can chat with the bot, signal an irrelevant answer and read the entire conversation
+* The admin page where one can see all the training content, modify existing content or add new content, as well as retrain the bot with the new content
+### Server
+The server mediates the requests from the client and logs all proceedings to a MongoDB database.
+### NLP model
+The core of the bot is a simple [bag-of-words system](https://en.wikipedia.org/wiki/Bag-of-words_model). The implementation was modified from a [tutorial](https://chatbotsmagazine.com/contextual-chat-bots-with-tensorflow-4391749d0077) to bring the training and using steps in one pipeline. It relies on NLTK library to generate a neural network intent classifier.
+
+The training content is a list of intents with input and output sentences for each intent. The conversation flow can be refined by restricting the possible intents with context tags.
+#### TODO
+This model is unsatisfying as even for a restricted application domain the frequence of words is a poor approximation of intent and the bag-of-words model does not allow for key element extraction. We are considering whether to iterate on the bag-of-words approach or entirely change the method.
 
 ## To use the chatbot
+Be aware that this is a template project and has no interest in and of its own. If you wish to develop your own chatbot with it, see below. If we are working together and you are trying to access the chatbot we built for you, contact us. If you just want to play around and see if you'd like to use our template, feel free to try the links below.
 ### Chat with the bot
-
+The chatbot is available on http://cribot.cri-paris.org/
+Be aware that we are not keeping it running all the time so it might not answer.
 ### Change the training data for the bot
+The admin page is available http://cribot.cri-paris.org/admin.html
+Be aware that we are not keeping it running all the time. If the page only contains two buttons and no table, it means the server has been turned off.
 
 ## To create a new chatbot from the template
 ### Questions to ask yourself before creating your chatbot
+Chatbots are exiting. But before you jump into crafting a chatbot, ask yourself if it really is the method most suited to your goals.
+
+A chatbot is, most and foreall, an interface. Does it make sense for your users to interact with your system in natural language? If you only have a series of binary choices to present your user, for example, why use a chatbot? Are your users people that will be comfortable chatting with a computer?
+
+Natural language processing is tricky and frustrating. Are you ok with having less control over your system behaviour than with a set of old-fashioned buttons? Are you ok with the many disapointing trials you will have to undertake before you get your training data to be good enough for the bot to answer a reasonable proportion of requests correctly?
+
+For businesses, [this](https://chatbotnewsdaily.com/do-you-really-need-a-chatbot-for-your-business-b27ab2dbc6db) can be a good read.
+
+Now, you know you want a chatbot. But do you really need to use this template? Have you tried out the free all-inclusive chatbot creator platforms out there? Unless you want are aiming for unusual functions, they will make your life so much easier than trying to built it yourself like we are doing it here. Of course, if you want complete control over what's happening in your bot, it might be worth digging into the code...
 
 ### Set up
 __Warning__: Tested on Unbuntu only for now
