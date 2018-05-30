@@ -74,10 +74,7 @@ Clone or download this repo where you want your client and where you want your s
 What you need for the server:
 * Python3
   * Check that *$python* runs Python3 (run *$python -V*)
-  * If not and you don't need to use Python2 on that computer:
-    * In your .bashrc or .bash_aliases file, add *alias python=python3*
-    * run *$sudo ln -s /Library/Frameworks/Python.framework/Versions3.4/lib/python3.4/site-packages /usr/local/lib/python3.4/site-packages*
-  *If not and you need Python2 on this computer, I do not have the solution yet, you might have to modify some of the code
+  * If not use this tutorial to be able to switch between versions of Python: https://linuxconfig.org/how-to-change-default-python-version-on-debian-9-stretch-linux
 * Python3 packages flask, flask_cors, nltk, numpy, tflearn, tensorflow, jsonschema, pymongo
 * nltk data
   * In command line: *sudo python3 -m nltk.downloader -d /usr/local/share/nltk_data all*
