@@ -1,0 +1,188 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "text": "Hi",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "How are you",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "Is anyone there?",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "Hello",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "Good day",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "Hullo",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "Yo",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "Bye",
+        "intent": "bye",
+        "entities": []
+      },
+      {
+        "text": "See you later",
+        "intent": "bye",
+        "entities": []
+      },
+      {
+        "text": "Goodbye",
+        "intent": "bye",
+        "entities": []
+      },
+      {
+        "text": "Bye bye",
+        "intent": "bye",
+        "entities": []
+      },
+      {
+        "text": "See ya",
+        "intent": "bye",
+        "entities": []
+      },
+      {
+        "text": "Thanks",
+        "intent": "thankyou",
+        "entities": []
+      },
+      {
+        "text": "Thank you",
+        "intent": "thankyou",
+        "entities": []
+      },
+      {
+        "text": "That's helpful",
+        "intent": "thankyou",
+        "entities": []
+      },
+      {
+        "text": "Thanks for your help",
+        "intent": "thankyou",
+        "entities": []
+      },
+      {
+        "text": "What's your name?",
+        "intent": "name",
+        "entities": []
+      },
+      {
+        "text": "Who are you?",
+        "intent": "name",
+        "entities": []
+      },
+      {
+        "text": "Are you real?",
+        "intent": "name",
+        "entities": []
+      },
+      {
+        "text": "Where are you?",
+        "intent": "whereAreYou",
+        "entities": []
+      },
+      {
+        "text": "Can I see you?",
+        "intent": "whereAreYou",
+        "entities": []
+      },
+      {
+        "text": "Fuck you",
+        "intent": "insult",
+        "entities": []
+      },
+      {
+        "text": "dick",
+        "intent": "insult",
+        "entities": []
+      },
+      {
+        "text": "you suck",
+        "intent": "insult",
+        "entities": []
+      },
+      {
+        "text": "I hate you",
+        "intent": "insult",
+        "entities": []
+      },
+      {
+        "text": "Stupid",
+        "intent": "insult",
+        "entities": []
+      },
+      {
+        "text": "Where is the IT team?",
+        "intent": "itOffice",
+        "entities": []
+      },
+      {
+        "text": "Where is IT's office?",
+        "intent": "itOffice",
+        "entities": []
+      },
+      {
+        "text": "What hours are you open?",
+        "intent": "itHours",
+        "entities": []
+      },
+      {
+        "text": "What are your hours?",
+        "intent": "itHours",
+        "entities": []
+      },
+      {
+        "text": "When are you open?",
+        "intent": "itHours",
+        "entities": []
+      },
+      {
+        "text": "When can you help me?",
+        "intent": "itHours",
+        "entities": []
+      },
+      {
+        "text": "When is the IT office open?",
+        "intent": "itHours",
+        "entities": []
+      },
+      {
+        "text": "When can I see the IT people?",
+        "intent": "itHours",
+        "entities": []
+      },
+      {
+        "text": "Thanks for your help",
+        "intent": "thankyou",
+        "entities": []
+      },
+      {
+        "text": "Thanks for your help",
+        "intent": "thankyou",
+        "entities": []
+      }
+      ],
+      "entity_examples": [],
+      "intent_examples": []
+    }
+}

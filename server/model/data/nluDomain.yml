@@ -1,0 +1,45 @@
+intents:
+  - greet
+  - thankyou
+  - bye
+  - name
+  - whereAreYou
+  - insult
+  - itOffice
+  - itHours
+
+templates:
+  utter_greet:
+    - "Hello, thanks for visiting"
+    - "Hi there, how can I help?"
+    - "Hi. what can I do for you?"
+  utter_bye:
+    - "See you later, thanks for visiting"
+    - "Have a nice day"
+    - "Bye! Come back again soon."
+  utter_yw:
+    - "Happy to help!"
+    - "Any time!"
+    - "My pleasure"
+    - "I live to serve."
+  utter_name:
+    - "I'm CRIBot. I'm not that smart, but I'll try to help. What can I do for you?"
+  utter_botLocation:
+    - "I'm CRIBot, I'm a virtual robot. I live in the cloud. Kinda like an angel. What can I do for you?"
+  utter_answerInsult:
+    - "Even robots have pride. Respect silicon based life forms."
+    - "Grow up. Be polite."
+    - "Having a bad day eh?"
+    - "I still love you. I'm programmed to."
+    - "Puny human, do not test my patience."
+    - "Let's work together on your problem and stay civil."
+  utter_itOffice:
+    - "<a href='https://people.cri-paris.org/#/browse?grp=%2FStaff%2FP%C3%B4le%20Num%C3%A9rique'>IT team</a> is based on the 20th floor of Montparnasse tower, office 20.20."
+  utter_itHours:
+    - "IT is open from 8:30am to 5pm every day except Wesdnesday, when we're only available by email."
+    - "The IT office hours are 8:30am-5:30pm every day. On Wednesday, we only help by email."
+
+actions:
+  - utter_greet
+  - utter_bye
+  - utter_yw

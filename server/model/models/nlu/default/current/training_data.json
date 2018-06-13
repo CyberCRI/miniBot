@@ -1,0 +1,72 @@
+{
+  "rasa_nlu_data": {
+    "regex_features": [],
+    "common_examples": [
+      {
+        "text": "Hi",
+        "intent": "greet"
+      },
+      {
+        "text": "How are you",
+        "intent": "greet"
+      },
+      {
+        "text": "Is anyone there?",
+        "intent": "greet"
+      },
+      {
+        "text": "Hello",
+        "intent": "greet"
+      },
+      {
+        "text": "Good day",
+        "intent": "greet"
+      },
+      {
+        "text": "Hullo",
+        "intent": "greet"
+      },
+      {
+        "text": "Yo",
+        "intent": "greet"
+      },
+      {
+        "text": "Bye",
+        "intent": "bye"
+      },
+      {
+        "text": "See you later",
+        "intent": "bye"
+      },
+      {
+        "text": "Goodbye",
+        "intent": "bye"
+      },
+      {
+        "text": "Bye bye",
+        "intent": "bye"
+      },
+      {
+        "text": "See ya",
+        "intent": "bye"
+      },
+      {
+        "text": "Thanks",
+        "intent": "thankyou"
+      },
+      {
+        "text": "Thank you",
+        "intent": "thankyou"
+      },
+      {
+        "text": "That's helpful",
+        "intent": "thankyou"
+      },
+      {
+        "text": "Thanks for your help",
+        "intent": "thankyou"
+      }
+    ],
+    "entity_synonyms": []
+  }
+}

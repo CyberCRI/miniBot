@@ -1,0 +1,12 @@
+{
+  "states": [
+    "intent_greet",
+    "intent_thankyou",
+    "intent_bye",
+    "prev_action_listen",
+    "prev_action_restart",
+    "prev_utter_greet",
+    "prev_utter_bye",
+    "prev_utter_yw"
+  ]
+}

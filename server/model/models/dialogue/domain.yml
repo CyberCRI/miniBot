@@ -1,0 +1,32 @@
+action_factory: null
+action_names:
+- utter_greet
+- utter_bye
+- utter_yw
+actions:
+- utter_greet
+- utter_bye
+- utter_yw
+config:
+  store_entities_as_slots: true
+entities: []
+intents:
+- greet
+- thankyou
+- bye
+slots: {}
+templates:
+  utter_bye:
+  - text: See you later, thanks for visiting
+  - text: Have a nice day
+  - text: Bye! Come back again soon.
+  utter_greet:
+  - text: Hello, thanks for visiting
+  - text: Hi there, how can I help?
+  - text: Hi. what can I do for you?
+  utter_yw:
+  - text: Happy to help!
+  - text: Any time!
+  - text: My pleasure
+  - text: I live to serve.
+topics: []
