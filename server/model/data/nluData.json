@@ -172,15 +172,136 @@
         "entities": []
       },
       {
-        "text": "Thanks for your help",
-        "intent": "thankyou",
+        "text": "My computer is broken",
+        "intent": "computerPb",
         "entities": []
       },
       {
-        "text": "Thanks for your help",
-        "intent": "thankyou",
+        "text": "repair my computer laptop",
+        "intent": "computerPb",
         "entities": []
-      }
+      },
+      {
+        "text": "Screen broken",
+        "intent": "computerPb",
+        "entities": []
+      },
+      {
+        "text": "Laptop open",
+        "intent": "computerPb",
+        "entities": []
+      },
+      {
+        "text": "Fix my computer",
+        "intent": "computerPb",
+        "entities": []
+      },
+      {
+        "text": "Laptop computer not working",
+        "intent": "computerPb",
+        "entities": []
+      },
+      {
+        "text": "I have a problem with my computer, please help",
+        "intent": "computerPb",
+        "entities": []
+      },
+      {
+        "text": "Who can access the documents on my Drive?",
+        "intent": "googleDriveAccess",
+        "entities": []
+      },
+      {
+        "text": "Who has access to my Google Drive?",
+        "intent": "googleDriveAccess",
+        "entities": []
+      },
+      {
+        "text": "How do I connect to the WIFI?",
+        "intent": "wifiSelf",
+        "entities": []
+      },
+      {
+        "text": "Can I connect to WIFI?",
+        "intent": "wifiSelf",
+        "entities": []
+      },
+      {
+        "text": "What wifi should I use?",
+        "intent": "wifiSelf",
+        "entities": []
+      },
+      {
+        "text": "Can I have Wifi?",
+        "intent": "wifiSelf",
+        "entities": []
+      },
+      {
+        "text": "What is the Wifi?",
+        "intent": "wifiGeneral",
+        "entities": []
+      },
+      {
+        "text": "I need a Wifi access",
+        "intent": "wifiGeneral",
+        "entities": []
+      },
+      {
+        "text": "What is the Wifi password for the week?",
+        "intent": "wifiVisitor",
+        "entities": []
+      },
+      {
+        "text": "I need wifi for my visitors",
+        "intent": "wifiVisitor",
+        "entities": []
+      },
+      {
+        "text": "Can I get wifi for my visitors",
+        "intent": "wifiVisitor",
+        "entities": []
+      },
+      {
+        "text": "Who can give me wifi for my event?",
+        "intent": "wifiVisitor",
+        "entities": []
+      },
+      {
+        "text": "How do I book a room?",
+        "intent": "roomBooking",
+        "entities": []
+      },
+      {
+        "text": "I need the conference room",
+        "intent": "roomBooking",
+        "entities": []
+      },
+      {
+        "text": "Can I book the seminar room?",
+        "intent": "roomBooking",
+        "entities": []
+      },
+      {
+        "text": "How do I reserve a meeting room?",
+        "intent": "roomBooking",
+        "entities": []
+      },
+      {
+        "text": "How does the GRR work?",
+        "intent": "roomBooking",
+        "entities": []
+      },
+      {
+        "text": "Who can give me wifi for my event?",
+        "intent": "wifiVistor",
+        "entities": []
+      },
+      {
+        "text": "Who can give me wifi for my event?",
+        "intent": "wifiVistor",
+        "entities": []
+      },
+
       ],
       "entity_examples": [],
       "intent_examples": []
